@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+node 01-auth-logout.js
+
+exit 0
