@@ -1,4 +1,5 @@
 # Ignore dir and files
 node_modules/
 target/
+*.lock
 

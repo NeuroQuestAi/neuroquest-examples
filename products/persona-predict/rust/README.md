@@ -19,6 +19,7 @@ Define the environment variables with your information:
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN=""
+export NQ_ESSAY="My text..."
 ```
 
 ### Build
@@ -33,6 +34,12 @@ cargo build
 
 ```shell
 cargo run -- --login
+```
+
+### Creating an analysis
+
+```shell
+cargo run -- --create
 ```
 
 ### Logout
