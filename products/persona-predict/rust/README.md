@@ -9,7 +9,7 @@ https://neuroquest.ai)
 Documentation of the **Persona Predict** API specification please access the address: [apis.neuroquest.ai/persona-predict](https://apis.neuroquest.ai/persona-predict/) for 
 information about the *product* access the address: [docs.neuroquest.ai/persona-predict](https://docs.neuroquest.ai/persona-predict/)
 
-To use **Persona Predict** with `node`:
+To use **Persona Predict** with `rust`:
 
 ### Environment variables
 
@@ -20,10 +20,24 @@ export NQ_USER="my-email"
 export NQ_USER="my-password"
 ```
 
+### Build
+
+In this directory:
+
+```shell
+cargo build
+```
+
 ### Login
 
 ```shell
-node 01-auth-login.js
+cargo run -- --login
 ```
 
-The remaining endpoints can be found in the folder above.
+### Logout
+
+```shell
+cargo run -- --logout
+```
+
+For more details, use `cargo run -- --help`
