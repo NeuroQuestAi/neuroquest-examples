@@ -7,7 +7,7 @@ https://neuroquest.ai)
 
 Examples using the [Persona Predict](https://docs.neuroquest.ai/persona-predict/) API:
 
-  - [Curl](products/persona-predict/curl)
+  - [Curl](curl)
   - [Node](products/persona-predict/node)
   - [Rust](products/persona-predict/rust)
   - [Python](products/persona-predict/python)
