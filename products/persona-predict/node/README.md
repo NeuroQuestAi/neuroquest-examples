@@ -25,3 +25,5 @@ export NQ_USER="my-password"
 ```shell
 node 01-auth-login.js
 ```
+
+The remaining endpoints can be found in the folder above.
