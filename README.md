@@ -6,3 +6,10 @@
 https://neuroquest.ai)
 
 Here you will find examples of codes and analyzes using **NeuroQuest AI** products. To find out about the products visit: [docs.neuroquest.ai](https://docs.neuroquest.ai/)
+
+### Products 🎈
+
+| Product                                                             | Description                             |
+| ------------------------------------------------------------------- | --------------------------------------- |
+| [Persona-Predict](products/persona-predict)                         | Text-Based Personality Prediction       |
+| [Five-Factor-E](https://github.com/NeuroQuestAi/five-factor-e)      | Big-Five Inventory based on IPIP-NEO    |
