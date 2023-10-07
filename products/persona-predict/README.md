@@ -10,5 +10,5 @@ Examples using the [Persona Predict](https://docs.neuroquest.ai/persona-predict/
   - [Curl](products/persona-predict/curl)
   - [Node](products/persona-predict/node)
   - [Rust](products/persona-predict/rust)
-  - [Python](products/persona-predict/rust)
+  - [Python](products/persona-predict/python)
   - [Jupyter-Notebook](products/persona-predict/notebooks)
