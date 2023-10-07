@@ -11,6 +11,19 @@ information about the *product* access the address: [docs.neuroquest.ai/persona-
 
 To use **Persona Predict** with `curl`:
 
+### Environment variables
+
+Define the environment variables with your information:
+
+```shell
+export NQ_USER="my-email"
+export NQ_PASSWORD="my-password"
+export NQ_TOKEN=""
+export NQ_ESSAY="My text..."
+```
+
+`Note:` If you use the scripts
+
 ### Login
 
 ```shell
