@@ -30,6 +30,8 @@ curl -X POST https://api-persona-predict.neuroquest.ai/api/v1/predict/create \
   -d '{"name": "John Green", "essay": "My text to be analyzed..."}' | jq .
 ```
 
+Or check script: [03-predict-create](products/persona-predict/curl/03-predict-create)
+
 ### Logout
 
 ```shell
