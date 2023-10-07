@@ -14,4 +14,5 @@ Access the code examples by clicking on the products in the table below:
 | Product                                                             | Description                             |
 | ------------------------------------------------------------------- | --------------------------------------- |
 | [Persona-Predict](products/persona-predict)                         | Text-Based Personality Prediction       |
+| [Power-Skills](products/power-skills)                               | Understand your Soft-Skills             |
 | [Five-Factor-E](https://github.com/NeuroQuestAi/five-factor-e)      | Big-Five Inventory based on IPIP-NEO    |
