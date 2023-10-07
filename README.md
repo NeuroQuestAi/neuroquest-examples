@@ -9,6 +9,8 @@ Here you will find examples of codes and analyzes using **NeuroQuest AI** produc
 
 ### Products 🎈
 
+Access the code examples by clicking on the products in the table below:
+
 | Product                                                             | Description                             |
 | ------------------------------------------------------------------- | --------------------------------------- |
 | [Persona-Predict](products/persona-predict)                         | Text-Based Personality Prediction       |
