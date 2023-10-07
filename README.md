@@ -7,7 +7,7 @@ https://neuroquest.ai)
 
 Here you will find examples of codes and analyzes using **NeuroQuest AI** products. To find out about the products visit: [docs.neuroquest.ai](https://docs.neuroquest.ai/)
 
-### Products 🎈
+### Product Ecosystem 🎈
 
 Access the code examples by clicking on the products in the table below:
 
