@@ -17,7 +17,7 @@ Define the environment variables with your information:
 
 ```shell
 export NQ_USER="my-email"
-export NQ_USER="my-password"
+export NQ_PASSWORD="my-password"
 ```
 
 ### Build
