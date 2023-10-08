@@ -5,11 +5,16 @@
 [![Powered by NeuroQuestAI](https://img.shields.io/badge/powered%20by-NeuroQuestAI-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](
 https://neuroquest.ai)
 ![jupyter](https://img.shields.io/static/v1.svg?label=jupyter&message=4.0.6%20&color=orange)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/NeuroQuestAi/neuroquest-examples/HEAD?labpath=products%2Fpersona-predict%2Fnotebooks)
 
 Documentation of the **Persona Predict** API specification please access the address: [apis.neuroquest.ai/persona-predict](https://apis.neuroquest.ai/persona-predict/) for 
 information about the *product* access the address: [docs.neuroquest.ai/persona-predict](https://docs.neuroquest.ai/persona-predict/)
 
 To use **Persona Predict** with `jupyter-notebook`:
+
+Test directly in [Binder](https://mybinder.org/) using:
+
+  - Run [Jupyter-Notebook in Binder](https://mybinder.org/v2/gh/NeuroQuestAi/neuroquest-examples/HEAD?labpath=products%2Fpersona-predict%2Fnotebooks)
 
 ### Environment variables
 
