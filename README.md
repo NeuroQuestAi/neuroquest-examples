@@ -9,7 +9,7 @@ Here you will find examples of codes and analyzes using **NeuroQuest AI** produc
 
 ### Product Ecosystem 🎈
 
-Access the code examples by clicking on the products in the table below:
+Access the code examples by clicking on the products 🏂 in the table below:
 
 | Product                                                             | Description                             |
 | ------------------------------------------------------------------- | --------------------------------------- |
