@@ -41,3 +41,9 @@ Or
 ```shell
 ./run-jupyter
 ```
+
+### Open file
+
+The EDA analysis is in the file: `Persona-Predict.ipynb`
+
+Persona-Predict.ipynb
