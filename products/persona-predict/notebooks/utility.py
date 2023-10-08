@@ -220,7 +220,8 @@ def plot_big_five_radar(score_big_five: list) -> None:
     plt.savefig("plots/big_five_plot_radar.png", bbox_inches="tight")
     plt.close()
 
-    display(HTML("<center><img src='plots/big_five_plot_radar.png' /></center>"))
+    # display(HTML("<center><img src='plots/big_five_plot_radar.png' /></center>"))
+    return "<center><img src='plots/big_five_plot_radar.png' /></center>"
 
 
 def plot_big_five_openness_facets_bar(score_openness_facets: list) -> None:
@@ -253,7 +254,15 @@ def plot_big_five_openness_facets_bar(score_openness_facets: list) -> None:
 
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig("plots/big_five_openness_facets_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    display(
+        Markdown(
+            "<center><img src='plots/big_five_openness_facets_plot_bar.png'/></center>"
+        )
+    )
 
 
 def plot_big_five_conscientiousness_facets_bar(
@@ -288,7 +297,17 @@ def plot_big_five_conscientiousness_facets_bar(
 
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig(
+        "plots/big_five_conscientiousness_facets_plot_bar.png", bbox_inches="tight"
+    )
+    plt.close()
+
+    display(
+        Markdown(
+            "<center><img src='plots/big_five_conscientiousness_facets_plot_bar.png'/></center>"
+        )
+    )
 
 
 def plot_big_five_extraversion_facets_bar(
@@ -323,7 +342,15 @@ def plot_big_five_extraversion_facets_bar(
 
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig("plots/big_five_extraversion_facets_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    display(
+        Markdown(
+            "<center><img src='plots/big_five_extraversion_facets_plot_bar.png'/></center>"
+        )
+    )
 
 
 def plot_big_five_agreeableness_facets_bar(
@@ -358,7 +385,15 @@ def plot_big_five_agreeableness_facets_bar(
 
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig("plots/big_five_agreeableness_facets_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    display(
+        Markdown(
+            "<center><img src='plots/big_five_agreeableness_facets_plot_bar.png'/></center>"
+        )
+    )
 
 
 def plot_big_five_neuroticism_facets_bar(
@@ -393,4 +428,12 @@ def plot_big_five_neuroticism_facets_bar(
 
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig("plots/big_five_neuroticism_facets_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    display(
+        Markdown(
+            "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
+        )
+    )
