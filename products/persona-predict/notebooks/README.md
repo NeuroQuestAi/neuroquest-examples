@@ -4,12 +4,12 @@
 
 [![Powered by NeuroQuestAI](https://img.shields.io/badge/powered%20by-NeuroQuestAI-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](
 https://neuroquest.ai)
-![rustc](https://img.shields.io/static/v1.svg?label=rustc&message=1.70%20&color=orange)
+![jupyter](https://img.shields.io/static/v1.svg?label=jupyter&message=1.70%20&color=orange)
 
 Documentation of the **Persona Predict** API specification please access the address: [apis.neuroquest.ai/persona-predict](https://apis.neuroquest.ai/persona-predict/) for 
 information about the *product* access the address: [docs.neuroquest.ai/persona-predict](https://docs.neuroquest.ai/persona-predict/)
 
-To use **Persona Predict** with `rust`:
+To use **Persona Predict** with `jupyter-notebook`:
 
 ### Environment variables
 
@@ -27,25 +27,17 @@ export NQ_ESSAY="My text..."
 In this directory:
 
 ```shell
-cargo build
+poetry shell && poetry update
 ```
 
-### Login
+### Start Notebook
 
 ```shell
-cargo run -- --login
+jupyter lab
 ```
 
-### Creating an analysis
+Or
 
 ```shell
-cargo run -- --create
+./run-jupyter
 ```
-
-### Logout
-
-```shell
-cargo run -- --logout
-```
-
-For more details, use `cargo run -- --help`
