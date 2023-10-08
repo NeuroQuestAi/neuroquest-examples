@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # jupyter notebook --no-browser && exit 0
 # jupyter lab
+# poetry export --without-hashes --format=requirements.txt > requirements.txt
+
 jupyter lab --no-browser
