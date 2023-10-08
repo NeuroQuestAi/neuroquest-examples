@@ -11,4 +11,4 @@ Examples using the [Persona Predict](https://docs.neuroquest.ai/persona-predict/
   - [Node](node)
   - [Rust](rust)
   - [Python](python)
-  - [Jupyter-Notebook](notebooks)
+  - [Jupyter-Notebook](notebooks/Persona-Predict.ipynb)
