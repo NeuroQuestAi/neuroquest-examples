@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 import requests
 import seaborn as sns
-from IPython.display import display, HTML
+from IPython.display import HTML, Markdown, display
+
 
 def login(user: str, password: str) -> dict:
     resp = requests.post(
@@ -176,11 +177,15 @@ def plot_big_five_bar(score_big_five: list) -> None:
 
     plt.xlabel("Traits")
     plt.ylabel("Percentage")
-    plt.title("My Big-Five Personality")
+    plt.title("Big-Five Personality")
 
     plt.xticks(rotation=0)
     plt.tight_layout()
-    plt.show()
+
+    plt.savefig("plots/big_five_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    display(Markdown("<center><img src='plots/big_five_plot_bar.png'/></center>"))
 
 
 def plot_big_five_radar(score_big_five: list) -> None:
@@ -209,43 +214,14 @@ def plot_big_five_radar(score_big_five: list) -> None:
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(keys[:-1])
 
-    plt.title("My Big-Five Personality")
+    plt.title("Big-Five Personality")
     plt.legend(loc="upper right")
-    plt.show()
 
-def plot_big_five_radar(score_big_five: list) -> None:
-    keys = list(score_big_five[0].keys())
-    percentile = list(score_big_five[0].values())
-
-    keys.append(keys[0])
-    percentile.append(percentile[0])
-
-    fig, ax = plt.subplots(figsize=(12, 6), subplot_kw={"polar": True})
-
-    angles = np.linspace(0, 2 * np.pi, len(keys), endpoint=True)
-
-    ax.plot(
-        angles,
-        percentile,
-        "b",
-        linestyle="solid",
-        linewidth=1,
-        marker="o",
-        markersize=7,
-        label="Score",
-    )
-    ax.fill(angles, percentile, "b", alpha=0.1)
-
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(keys[:-1])
-
-    plt.title("My Big-Five Personality")
-    plt.legend(loc="upper right")
-    
     plt.savefig("plots/big_five_plot_radar.png", bbox_inches="tight")
     plt.close()
-    
+
     display(HTML("<center><img src='plots/big_five_plot_radar.png' /></center>"))
+
 
 def plot_big_five_openness_facets_bar(score_openness_facets: list) -> None:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
