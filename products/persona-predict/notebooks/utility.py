@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 import requests
 import seaborn as sns
-from IPython.display import HTML, Markdown, display
 
 
 def login(user: str, password: str) -> dict:
@@ -152,7 +151,7 @@ def get_neuroticism_facets(x: dict) -> dict:
     return {}
 
 
-def plot_big_five_bar(score_big_five: list) -> None:
+def plot_big_five_bar(score_big_five: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
 
     df = pd.DataFrame.from_dict(
@@ -185,10 +184,10 @@ def plot_big_five_bar(score_big_five: list) -> None:
     plt.savefig("plots/big_five_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    display(Markdown("<center><img src='plots/big_five_plot_bar.png'/></center>"))
+    return "<center><img src='plots/big_five_plot_bar.png'/></center>"
 
 
-def plot_big_five_radar(score_big_five: list) -> None:
+def plot_big_five_radar(score_big_five: list) -> str:
     keys = list(score_big_five[0].keys())
     percentile = list(score_big_five[0].values())
 
@@ -220,11 +219,10 @@ def plot_big_five_radar(score_big_five: list) -> None:
     plt.savefig("plots/big_five_plot_radar.png", bbox_inches="tight")
     plt.close()
 
-    # display(HTML("<center><img src='plots/big_five_plot_radar.png' /></center>"))
-    return "<center><img src='plots/big_five_plot_radar.png' /></center>"
+    return "<center><img src='plots/big_five_plot_radar.png'/></center>"
 
 
-def plot_big_five_openness_facets_bar(score_openness_facets: list) -> None:
+def plot_big_five_openness_facets_bar(score_openness_facets: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.keys())[0] for item in score_openness_facets]
     scores = [list(item.values())[0] for item in score_openness_facets]
@@ -258,16 +256,12 @@ def plot_big_five_openness_facets_bar(score_openness_facets: list) -> None:
     plt.savefig("plots/big_five_openness_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    display(
-        Markdown(
-            "<center><img src='plots/big_five_openness_facets_plot_bar.png'/></center>"
-        )
-    )
+    return "<center><img src='plots/big_five_openness_facets_plot_bar.png'/></center>"
 
 
 def plot_big_five_conscientiousness_facets_bar(
     score_conscientiousness_facets: list,
-) -> None:
+) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.keys())[0] for item in score_conscientiousness_facets]
     scores = [list(item.values())[0] for item in score_conscientiousness_facets]
@@ -303,16 +297,12 @@ def plot_big_five_conscientiousness_facets_bar(
     )
     plt.close()
 
-    display(
-        Markdown(
-            "<center><img src='plots/big_five_conscientiousness_facets_plot_bar.png'/></center>"
-        )
-    )
+    return "<center><img src='plots/big_five_conscientiousness_facets_plot_bar.png'/></center>"
 
 
 def plot_big_five_extraversion_facets_bar(
     score_extraversion_facets: list,
-) -> None:
+) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.keys())[0] for item in score_extraversion_facets]
     scores = [list(item.values())[0] for item in score_extraversion_facets]
@@ -346,16 +336,14 @@ def plot_big_five_extraversion_facets_bar(
     plt.savefig("plots/big_five_extraversion_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    display(
-        Markdown(
-            "<center><img src='plots/big_five_extraversion_facets_plot_bar.png'/></center>"
-        )
+    return (
+        "<center><img src='plots/big_five_extraversion_facets_plot_bar.png'/></center>"
     )
 
 
 def plot_big_five_agreeableness_facets_bar(
     score_agreeableness_facets: list,
-) -> None:
+) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.keys())[0] for item in score_agreeableness_facets]
     scores = [list(item.values())[0] for item in score_agreeableness_facets]
@@ -389,16 +377,14 @@ def plot_big_five_agreeableness_facets_bar(
     plt.savefig("plots/big_five_agreeableness_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    display(
-        Markdown(
-            "<center><img src='plots/big_five_agreeableness_facets_plot_bar.png'/></center>"
-        )
+    return (
+        "<center><img src='plots/big_five_agreeableness_facets_plot_bar.png'/></center>"
     )
 
 
 def plot_big_five_neuroticism_facets_bar(
     score_neuroticism_facets: list,
-) -> None:
+) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.keys())[0] for item in score_neuroticism_facets]
     scores = [list(item.values())[0] for item in score_neuroticism_facets]
@@ -432,8 +418,6 @@ def plot_big_five_neuroticism_facets_bar(
     plt.savefig("plots/big_five_neuroticism_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    display(
-        Markdown(
-            "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
-        )
+    return (
+        "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
     )
