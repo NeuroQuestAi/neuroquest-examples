@@ -16,6 +16,8 @@ Test directly in [Binder](https://mybinder.org/) using:
 
   - Run [Jupyter-Notebook in Binder](https://mybinder.org/v2/gh/NeuroQuestAi/neuroquest-examples/HEAD?labpath=products%2Fpersona-predict%2Fnotebooks)
 
+Or use it on your machine by following the steps below.
+
 ### Environment variables
 
 Define the environment variables with your information:
