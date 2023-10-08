@@ -22,7 +22,7 @@ export NQ_TOKEN=""
 export NQ_ESSAY="My text..."
 ```
 
-`Note:` If you use the scripts
+`Note:` If you use the scripts.
 
 ### Login
 
@@ -32,7 +32,7 @@ curl -X POST https://api-persona-predict.neuroquest.ai/api/v1/auth/login \
   -d '{"email": "morpheus@neuroquest.ai", "password": "my-password"}' | jq .
 ```
 
-Or check script: [01-auth-login](products/persona-predict/curl/01-auth-login)
+Or check script: [01-auth-login](01-auth-login)
 
 ### Creating an analysis
 
@@ -43,7 +43,7 @@ curl -X POST https://api-persona-predict.neuroquest.ai/api/v1/predict/create \
   -d '{"name": "John Green", "essay": "My text to be analyzed..."}' | jq .
 ```
 
-Or check script: [03-predict-create](products/persona-predict/curl/03-predict-create)
+Or check script: [03-predict-create](03-predict-create)
 
 ### Logout
 
