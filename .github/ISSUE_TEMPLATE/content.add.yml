@@ -1,0 +1,45 @@
+name: Request content addition
+description: Request NEW documentation content.
+labels: ["documentation", "content:new"]
+body:
+  - type: dropdown
+    id: products
+    validations:
+      required: true
+    attributes:
+      label: Which NeuroQuest AI product(s) does this pertain to?
+      multiple: true
+      options:
+        - Persona Predict
+        - Persona Profiler
+        - Power Skills
+        - Five Factor E
+
+  - type: input
+    id: subject
+    validations:
+      required: true
+    attributes:
+      label: Subject Matter
+      description: What needs to be documented?
+
+  - type: textarea
+    id: location
+    validations:
+      required: true
+    attributes:
+      label: Content Location
+      placeholder: Should this be a new document, a new section within an existing document, or a call-out within a section?
+      description: |
+        Where would you expect this addition to be placed?
+        Please provide any URLs to existing documents.
+
+  - type: textarea
+    id: extra
+    validations:
+      required: false
+    attributes:
+      label: Additional information
+      description: Any other details or screenshots that may be relevant.
+
+
