@@ -158,10 +158,16 @@ def plot_big_five_bar(score_big_five: list) -> str:
         score_big_five[0], orient="index", columns=["Percentage"]
     ).reset_index()
     df = df.rename(columns={"index": "Trait"})
+    custom_colors = ["#577EF3", "#3996DF", "#43C386", "#FDCB1E", "#F57C1A"]
 
     plt.figure(figsize=(12, 6))
     sns.barplot(
-        data=df, x="Trait", y="Percentage", palette="viridis", hue="Trait", legend=False
+        data=df,
+        x="Trait",
+        y="Percentage",
+        palette=custom_colors,
+        hue="Trait",
+        legend=False,
     )
 
     for x, y in zip(df["Percentage"], plt.gca().patches):
@@ -230,7 +236,7 @@ def plot_big_five_openness_facets_bar(score_openness_facets: list) -> str:
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
     plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("RdPu", len(traits))
+    colors = sns.color_palette("light:b", len(traits))
 
     sns.barplot(
         data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
@@ -269,7 +275,7 @@ def plot_big_five_conscientiousness_facets_bar(
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
     plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("YlOrBr", len(traits))
+    colors = sns.color_palette("Blues", len(traits))
 
     sns.barplot(
         data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
@@ -310,7 +316,7 @@ def plot_big_five_extraversion_facets_bar(
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
     plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("Greens", len(traits))
+    colors = sns.light_palette("seagreen", len(traits))
 
     sns.barplot(
         data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
@@ -351,7 +357,7 @@ def plot_big_five_agreeableness_facets_bar(
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
     plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("Blues", len(traits))
+    colors = sns.color_palette("light:y", len(traits))
 
     sns.barplot(
         data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
@@ -392,7 +398,7 @@ def plot_big_five_neuroticism_facets_bar(
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
     plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("Reds", len(traits))
+    colors = sns.color_palette("Oranges", len(traits))
 
     sns.barplot(
         data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
