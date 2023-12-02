@@ -11,7 +11,7 @@ Examples using the [Power Skills](https://docs.neuroquest.ai/power-skills/) API:
 
 ## Supported Languages 🌍
 
-The model is trained natively with English 🇺 and Brazilian Portuguese 🇧 language support, other languages use multi-language support:
+The model is trained natively with English 🇺🇸 and Brazilian Portuguese 🇧🇷 language support, other languages use multi-language support:
 
 | Languages        | Support | Specific Training |
 |------------------|---------| ------------------|
