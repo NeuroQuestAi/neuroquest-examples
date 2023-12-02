@@ -48,7 +48,7 @@ Or check script: [03-predict-create](03-predict-create)
 ### Logout
 
 ```shell
-curl -X GET https://api-persona-predict.neuroquest.ai/api/v1/auth/logout?email=bruce.wayne@neuroquest.ai \
+curl -X GET https://api-power-skills.neuroquest.ai/api/v1/auth/logout?email=bruce.wayne@neuroquest.ai \
   -H "Content-Type: application/json" \
   -H "token: my-token" | jq .
 ```
