@@ -6,4 +6,5 @@
 https://neuroquest.ai)
 
   - [Persona-Predict](persona-predict)
+  - [Power-Skills](power-skills)
   - [Five-Factor-E](https://github.com/NeuroQuestAi/five-factor-e) 
