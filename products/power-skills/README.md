@@ -8,6 +8,10 @@ https://neuroquest.ai)
 Examples using the [Power Skills](https://docs.neuroquest.ai/power-skills/) API:
 
   - [Curl](curl)
+  - [Node](node)
+  - [Rust](rust)
+  - [Python](python)
+  - [Jupyter-Notebook](notebooks)
 
 ## Supported Languages 🌍
 
