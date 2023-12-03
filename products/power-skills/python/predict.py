@@ -48,7 +48,7 @@ async def create():
                 "token": os.getenv("NQ_TOKEN"),
             },
             data=json.dumps(
-                {"name": "John Green", "essay": os.getenv("NQ_ESSAY")}
+                {"name": "Gabriela Ehlert", "essay": os.getenv("NQ_ESSAY")}
             ),
         ) as resp:
             if resp.status == 201:
@@ -60,7 +60,7 @@ async def create():
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="Example using the Person-Predict API")
+    parser = argparse.ArgumentParser(description="Example using the Power-Skills API")
 
     parser.add_argument("--login", action="store_true", help="Login to the API")
     parser.add_argument("--logout", action="store_true", help="Logout of the API")
