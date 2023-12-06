@@ -41,114 +41,22 @@ def get_predict_result_in_file() -> dict:
     return data
 
 
-def get_my_txt_essay() -> str:
-    return " ".join(str(open("my-essay.txt", "r").read()).split())
+def get_my_txt_essay(lang: str = "en") -> str:
+    if lang == "en":
+        return " ".join(str(open("my-essay-en.txt", "r").read()).split())
+    elif lang == "pt":
+        return " ".join(str(open("my-essay-pt.txt", "r").read()).split())
+    raise ValueError("Essay not found!")
 
 
 def get_big_five(x: dict) -> dict:
     return {
-        "O": x.get("openness").get("O"),
-        "C": x.get("conscientiousness").get("C"),
-        "E": x.get("extraversion").get("E"),
-        "A": x.get("agreeableness").get("A"),
-        "N": x.get("neuroticism").get("N"),
+        "O": x.get("openness").get("result"),
+        "C": x.get("conscientiousness").get("result"),
+        "E": x.get("extraversion").get("result"),
+        "A": x.get("agreeableness").get("result"),
+        "N": x.get("neuroticism").get("result"),
     }
-
-
-def get_openness_facets(x: dict) -> dict:
-    if "imagination" in x:
-        return {"Imagination": x.get("imagination")}
-    elif "artistic_interests" in x:
-        return {"Artistic Interests": x.get("artistic_interests")}
-    elif "emotionality" in x:
-        return {"Emotionality": x.get("emotionality")}
-    elif "adventurousness" in x:
-        return {"Adventurousness": x.get("adventurousness")}
-    elif "intellect" in x:
-        return {"Intellect": x.get("intellect")}
-    elif "liberalism" in x:
-        return {"Liberalism": x.get("liberalism")}
-    return {}
-
-
-def get_conscientiousness_facets(x: dict) -> dict:
-    if "self_efficacy" in x:
-        return {"Self-Efficacy": x.get("self_efficacy")}
-    elif "orderliness" in x:
-        return {"Orderliness": x.get("orderliness")}
-    elif "dutifulness" in x:
-        return {"Dutifulness": x.get("dutifulness")}
-    elif "achievement_striving" in x:
-        return {"Achievement-Striving": x.get("achievement_striving")}
-    elif "self_discipline" in x:
-        return {"Self-Discipline": x.get("self_discipline")}
-    elif "cautiousness" in x:
-        return {"Cautiousness": x.get("cautiousness")}
-    return {}
-
-
-def get_conscientiousness_facets(x: dict) -> dict:
-    if "self_efficacy" in x:
-        return {"Self-Efficacy": x.get("self_efficacy")}
-    elif "orderliness" in x:
-        return {"Orderliness": x.get("orderliness")}
-    elif "dutifulness" in x:
-        return {"Dutifulness": x.get("dutifulness")}
-    elif "achievement_striving" in x:
-        return {"Achievement Striving": x.get("achievement_striving")}
-    elif "self_discipline" in x:
-        return {"Self-Discipline": x.get("self_discipline")}
-    elif "cautiousness" in x:
-        return {"Cautiousness": x.get("cautiousness")}
-    return {}
-
-
-def get_extraversion_facets(x: dict) -> dict:
-    if "friendliness" in x:
-        return {"Friendliness": x.get("friendliness")}
-    elif "gregariousness" in x:
-        return {"Gregariousness": x.get("gregariousness")}
-    elif "assertiveness" in x:
-        return {"Assertiveness": x.get("assertiveness")}
-    elif "activity_level" in x:
-        return {"Activity Level": x.get("activity_level")}
-    elif "excitement_seeking" in x:
-        return {"Excitement-Seeking": x.get("excitement_seeking")}
-    elif "cheerfulness" in x:
-        return {"Cheerfulness": x.get("cheerfulness")}
-    return {}
-
-
-def get_agreeableness_facets(x: dict) -> dict:
-    if "trust" in x:
-        return {"Trust": x.get("trust")}
-    elif "morality" in x:
-        return {"Morality": x.get("morality")}
-    elif "altruism" in x:
-        return {"Altruism": x.get("altruism")}
-    elif "cooperation" in x:
-        return {"Cooperation": x.get("cooperation")}
-    elif "modesty" in x:
-        return {"Modesty": x.get("modesty")}
-    elif "sympathy" in x:
-        return {"Sympathy": x.get("sympathy")}
-    return {}
-
-
-def get_neuroticism_facets(x: dict) -> dict:
-    if "anxiety" in x:
-        return {"Anxiety": x.get("anxiety")}
-    elif "anger" in x:
-        return {"Anger": x.get("anger")}
-    elif "depression" in x:
-        return {"Depression": x.get("depression")}
-    elif "self_consciousness" in x:
-        return {"Self-Consciousness": x.get("self_consciousness")}
-    elif "immoderation" in x:
-        return {"Immoderation": x.get("immoderation")}
-    elif "vulnerability" in x:
-        return {"Vulnerability": x.get("vulnerability")}
-    return {}
 
 
 def plot_big_five_bar(score_big_five: list) -> str:
@@ -230,8 +138,8 @@ def plot_big_five_radar(score_big_five: list) -> str:
 
 def plot_big_five_openness_facets_bar(score_openness_facets: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.keys())[0] for item in score_openness_facets]
-    scores = [list(item.values())[0] for item in score_openness_facets]
+    traits = [list(item.values())[1] for item in score_openness_facets]
+    scores = [list(item.values())[2] for item in score_openness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -269,8 +177,8 @@ def plot_big_five_conscientiousness_facets_bar(
     score_conscientiousness_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.keys())[0] for item in score_conscientiousness_facets]
-    scores = [list(item.values())[0] for item in score_conscientiousness_facets]
+    traits = [list(item.values())[1] for item in score_conscientiousness_facets]
+    scores = [list(item.values())[2] for item in score_conscientiousness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -310,8 +218,8 @@ def plot_big_five_extraversion_facets_bar(
     score_extraversion_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.keys())[0] for item in score_extraversion_facets]
-    scores = [list(item.values())[0] for item in score_extraversion_facets]
+    traits = [list(item.values())[1] for item in score_extraversion_facets]
+    scores = [list(item.values())[2] for item in score_extraversion_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -351,8 +259,8 @@ def plot_big_five_agreeableness_facets_bar(
     score_agreeableness_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.keys())[0] for item in score_agreeableness_facets]
-    scores = [list(item.values())[0] for item in score_agreeableness_facets]
+    traits = [list(item.values())[1] for item in score_agreeableness_facets]
+    scores = [list(item.values())[2] for item in score_agreeableness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -392,8 +300,8 @@ def plot_big_five_neuroticism_facets_bar(
     score_neuroticism_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.keys())[0] for item in score_neuroticism_facets]
-    scores = [list(item.values())[0] for item in score_neuroticism_facets]
+    traits = [list(item.values())[1] for item in score_neuroticism_facets]
+    scores = [list(item.values())[2] for item in score_neuroticism_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -427,3 +335,42 @@ def plot_big_five_neuroticism_facets_bar(
     return (
         "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
     )
+
+
+def plot_orvis_facets_bar(
+    score_orvis_facets: list,
+) -> str:
+    sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
+    traits = [list(item.values())[1] for item in score_orvis_facets]
+    scores = [list(item.values())[2] for item in score_orvis_facets]
+
+    df = pd.DataFrame({"Trait": traits, "Percentage": scores})
+
+    plt.figure(figsize=(12, 6))
+    colors = sns.color_palette("Set2", len(traits))
+
+    sns.barplot(
+        data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
+    )
+
+    for x, bar in zip(scores, plt.gca().patches):
+        plt.gca().annotate(
+            f"{x:.2f}%",
+            (bar.get_x() + bar.get_width() / 2, bar.get_height()),
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            color="black",
+        )
+
+    plt.xlabel("Traits")
+    plt.ylabel("Percentage")
+    plt.title("ORVIS")
+
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    plt.savefig("plots/big_five_orvis_facets_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    return "<center><img src='plots/big_five_orvis_facets_plot_bar.png'/></center>"
