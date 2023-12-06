@@ -370,7 +370,7 @@ def plot_orvis_facets_bar(
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_orvis_facets_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/orvis_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return "<center><img src='plots/big_five_orvis_facets_plot_bar.png'/></center>"
+    return "<center><img src='plots/orvis_facets_plot_bar.png'/></center>"
