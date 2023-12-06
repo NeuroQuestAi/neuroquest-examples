@@ -46,7 +46,7 @@ The model is trained natively with English 🇺🇸 and Brazilian Portuguese �
 | Czech            | OK      | NO                |
 | Danish           | OK      | NO                |
 | Dutch            | OK      | NO                |
-| English          | OK      | YES               |
+| English          | OK      | **YES**           |
 | Estonian         | OK      | NO                |
 | Finnish          | OK      | NO                |
 | French           | OK      | NO                |
@@ -90,7 +90,7 @@ The model is trained natively with English 🇺🇸 and Brazilian Portuguese �
 | Persian (Farsi)  | OK      | NO                |
 | Piedmontese      | OK      | NO                |
 | Polish           | OK      | NO                |
-| Portuguese       | OK      | YES               |
+| Portuguese       | OK      | **YES**           |
 | Punjabi          | OK      | NO                |
 | Romanian         | OK      | NO                |
 | Russian          | OK      | NO                |
