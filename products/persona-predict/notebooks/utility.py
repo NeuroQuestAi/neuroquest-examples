@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 import requests
 import seaborn as sns
+import plotly.graph_objects as go
+import plotly.express as px
 
 
 def login(user: str, password: str) -> dict:
@@ -374,3 +376,82 @@ def plot_orvis_facets_bar(
     plt.close()
 
     return "<center><img src='plots/orvis_facets_plot_bar.png'/></center>"
+
+
+def plot_eda_boxplot(
+    df: pd.DataFrame, targets: list, ticktext: list, title: str, color: int
+) -> None:
+    fig = go.Figure()
+
+    if color == 1:
+        set_color = px.colors.sequential.Plasma
+    elif color == 2:
+        set_color = px.colors.sequential.Cividis
+    elif color == 3:
+        set_color = px.colors.sequential.Magma
+    elif color == 4:
+        set_color = px.colors.sequential.Inferno
+    elif color == 5:
+        set_color = px.colors.sequential.Turbo
+    elif color == 6:
+        set_color = px.colors.sequential.Jet
+
+    for i, (dim, color) in enumerate(zip(targets, set_color)):
+        fig.add_trace(
+            go.Box(y=[df[x].tolist() for x in targets][i], name=dim, marker_color=color)
+        )
+
+    fig.update_layout(
+        title=dict(text=title, x=0.5),
+        yaxis=dict(title="Values"),
+        xaxis=dict(
+            tickvals=list(range(len(targets))),
+            ticktext=ticktext,
+            tickangle=45,
+        ),
+        height=600,
+        width=1000,
+        margin=dict(l=100, r=100, b=100, t=100),
+    )
+
+    fig.show()
+
+
+def plot_eda_radar(df: pd.DataFrame, targets: list, title: str) -> None:
+    fig = go.Figure()
+
+    if len(targets) == 5:
+        titles = targets + targets[:1]
+    else:
+        titles = [
+            facet.split("_", 1)[1].replace("_", " ").title() for facet in targets
+        ] + [targets[0].split("_", 1)[1].replace("_", " ").title()]
+
+    for stat, line_style in [("Mean", None), ("Max", "dash"), ("Min", "dash")]:
+        values = (
+            df[targets].agg(stat.lower()).tolist()
+            + df[targets].agg(stat.lower()).tolist()[:1]
+        )
+        fig.add_trace(
+            go.Scatterpolar(
+                r=values,
+                theta=titles,
+                fill="toself",
+                name=stat,
+                line=dict(dash=line_style),
+            )
+        )
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(visible=True, range=[0, 100]),
+            angularaxis=dict(rotation=90, direction="clockwise"),
+        ),
+        showlegend=True,
+        title=dict(text=title, x=0.5),
+        height=600,
+        width=1000,
+        margin=dict(l=100, r=100, b=100, t=100),
+    )
+
+    fig.show()
