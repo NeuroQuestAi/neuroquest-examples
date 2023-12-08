@@ -12,7 +12,12 @@ information about the *product* access the address: [docs.neuroquest.ai/persona-
 
 To use **Persona Predict** with `jupyter-notebook`:
 
-Test directly in [Binder](https://mybinder.org/) using:
+View with NBViewer:
+
+  - [Persona-Predict](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict.ipynb)
+  - [Persona-Predict-Population](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop.ipynb)
+
+Or test directly in [Binder](https://mybinder.org/):
 
   - Run [Jupyter-Notebook in Binder](https://mybinder.org/v2/gh/NeuroQuestAi/neuroquest-examples/HEAD?labpath=products%2Fpersona-predict%2Fnotebooks)
 
@@ -25,8 +30,6 @@ Define the environment variables with your information:
 ```shell
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
-export NQ_TOKEN=""
-export NQ_ESSAY="My text..."
 ```
 
 ### Build
@@ -48,7 +51,3 @@ Or
 ```shell
 ./run-jupyter
 ```
-
-### Open file
-
-The EDA analysis is in the file: [Persona-Predict.ipynb](Persona-Predict.ipynb)
