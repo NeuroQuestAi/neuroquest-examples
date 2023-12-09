@@ -14,8 +14,8 @@ To use **Persona Predict** with `jupyter-notebook`:
 
 View with **NBViewer**:
 
-  - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb)
-  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Data.ipynb)
+  - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb?flush_cache=true)
+  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Data.ipynb?flush_cache=true)
 
 Or test directly in [Binder](https://mybinder.org/):
 
