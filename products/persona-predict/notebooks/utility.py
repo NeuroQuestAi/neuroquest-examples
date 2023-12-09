@@ -395,6 +395,12 @@ def plot_eda_boxplot(
         set_color = px.colors.sequential.Turbo
     elif color == 6:
         set_color = px.colors.sequential.Jet
+    elif color == 7:
+        set_color = px.colors.sequential.Viridis
+    elif color == 8:
+        set_color = px.colors.sequential.Purp
+    elif color == 9:
+        set_color = px.colors.sequential.Teal
 
     for i, (dim, color) in enumerate(zip(targets, set_color)):
         fig.add_trace(
