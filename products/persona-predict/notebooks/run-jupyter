@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# jupyter notebook --no-browser && exit 0
-# jupyter lab
-# poetry export --without-hashes --format=requirements.txt > requirements.txt
-
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+cp -rf requirements.txt ../../../binder
 jupyter lab --no-browser

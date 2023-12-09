@@ -12,10 +12,10 @@ information about the *product* access the address: [docs.neuroquest.ai/persona-
 
 To use **Persona Predict** with `jupyter-notebook`:
 
-View with NBViewer:
+View with **NBViewer**:
 
-  - [Persona-Predict](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict.ipynb)
-  - [Persona-Predict-Population](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop.ipynb)
+  - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb)
+  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Data.ipynb)
 
 Or test directly in [Binder](https://mybinder.org/):
 
