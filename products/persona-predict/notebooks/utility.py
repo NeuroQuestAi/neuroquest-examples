@@ -455,3 +455,29 @@ def plot_eda_radar(df: pd.DataFrame, targets: list, title: str) -> None:
     )
 
     fig.show()
+
+
+def remove_stop_words_from_essay(
+    df: pd.DataFrame, download_data: bool = False
+) -> str | None:
+    import logging
+
+    logger = logging.getLogger("nltk")
+    logger.setLevel(logging.ERROR)
+
+    from nltk.corpus import stopwords
+    from nltk.tokenize import word_tokenize
+
+    import nltk
+
+    if download_data:
+        nltk.download("stopwords")
+        nltk.download("punkt")
+
+    essays = " ".join(df["essay"].astype(str).tolist())
+    words = word_tokenize(essays)
+
+    stopwords = set(stopwords.words("portuguese"))
+    clean_stopwords = " ".join([x for x in words if x.lower() not in stopwords])
+
+    return clean_stopwords or None
