@@ -55,4 +55,3 @@ curl -X GET https://api-power-skills.neuroquest.ai/api/v1/auth/logout?email=bruc
 
 Or check script: [01-auth-logout](01-auth-logout)
 
-

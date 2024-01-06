@@ -5,6 +5,6 @@ ESSAY="Generative Artificial Intelligence (or GenAI) is now being regarded as th
 curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create \
   -H "Content-Type: application/json" \
   -H "token: ${NQ_TOKEN}" \
-  -d "{\"name\": \"Gabriela Ehlert\", \"essay\": \"${ESSAY}\"}" | jq .
+  -d "{\"metric\": \"WEF2023\", \"name\": \"Gabriela Ehlert\", \"essay\": \"${ESSAY}\"}" | jq .
 
 exit 0
