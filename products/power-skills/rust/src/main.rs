@@ -10,6 +10,7 @@ struct Login {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Essay {
+    metric: String,
     name: String,
     essay: String,
 }
@@ -85,6 +86,7 @@ async fn api_predict_logout(user: &str, token: &str) -> Result<(), Box<dyn std::
 
 async fn api_predict_create(text: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
     let data = Essay {
+        metric: "WEF2023".to_string(),
         name: "Gabriela Ehlert".to_string(),
         essay: text.to_string(),
     };
