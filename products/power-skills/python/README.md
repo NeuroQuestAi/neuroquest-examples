@@ -20,7 +20,10 @@ export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN="test"
 export NQ_ESSAY="My text..."
+export NQ_AUDIO="../curl/audio/OBAMA-SPEECH01.ogg"
 ```
+
+`Note:` All variables must be defined. The audio file must be a minimum of 10 seconds and a maximum of 60 seconds.
 
 ### Build
 
@@ -36,11 +39,23 @@ poetry shell && poetry update
 python predict.py --login 
 ```
 
-### Creating an analysis
+`Note:` After getting the token triggering the login endpoint. Redefine the environment variable: NQ_TOKEN
+
+### Creating an analysis (text)
 
 ```shell
 python predict.py --create
 ```
+
+`Note:` An analysis will be created with the text defined in the environment variable: NQ_ESSAY
+
+### Creating an analysis (audio)
+
+```shell
+python predict.py --create-audio
+```
+
+`Note:` An analysis will be created with the audio defined in the environment variable: NQ_AUDIO
 
 ### Logout
 
