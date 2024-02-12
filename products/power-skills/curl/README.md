@@ -45,6 +45,8 @@ curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create \
 
 Or check script: [03-predict-create](03-predict-create)
 
+You can also use **audio**, see: [04-predict-create](04-predict-create)
+
 ### Logout
 
 ```shell
@@ -54,4 +56,10 @@ curl -X GET https://api-power-skills.neuroquest.ai/api/v1/auth/logout?email=bruc
 ```
 
 Or check script: [01-auth-logout](01-auth-logout)
+
+### Audio 
+
+Instead of sending text, you can also send an audio. Wav or ogg format can be used. See more at: [04-predict-create](04-predict-create)
+
+> Note: The audio files are examples only and were collected: [American Rhetoric](https://www.americanrhetoric.com/barackobamaspeeches.htm)
 
