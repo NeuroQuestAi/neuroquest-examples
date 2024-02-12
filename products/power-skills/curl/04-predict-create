@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-AUDIO_FILENAME="audio/OBAMA-SPEECH01.ogg"
+AUDIO_FILENAME="audio/TRUMP-WEF-2018.wav"
 AUDIO_LANG="en"
 
-resp=$(curl -X POST http://127.0.0.1:8000/api/v1/audio/upload \
+resp=$(curl -X POST https://api-power-skills.neuroquest.ai/api/v1/audio/upload \
   -H "Content-Type: multipart/form-data" \
   -F "file=@${AUDIO_FILENAME}" \
   -H "token: ${NQ_TOKEN}" | jq .)
 
-AUDIO_ID=$(echo "$resp" | jq -r '.data.audio')
-echo "My audio ID is: ${AUDIO_ID}"
+echo "${resp}"
+AUDIO_ID=$(echo "${resp}" | jq -r '.data.audio')
 
-curl -X POST http://127.0.0.1:8000/api/v1/predict/create \
+curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create \
   -H "Content-Type: application/json" \
   -H "token: ${NQ_TOKEN}" \
-  -d "{\"name\": \"Barack Obama\", \"audio\": \"${AUDIO_ID}\", \"lang\": \"${AUDIO_LANG}\" }" | jq .
+  -d "{\"name\": \"Trump WEF2018\", \"audio\": \"${AUDIO_ID}\", \"lang\": \"${AUDIO_LANG}\" }" | jq .
 
 exit 0
