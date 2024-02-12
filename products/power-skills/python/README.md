@@ -52,7 +52,7 @@ python predict.py --create
 ### Creating an analysis (audio)
 
 ```shell
-python predict.py --create-audio
+python predict.py --audio
 ```
 
 `Note:` An analysis will be created with the audio defined in the environment variable: NQ_AUDIO
