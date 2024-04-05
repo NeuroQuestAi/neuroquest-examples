@@ -15,5 +15,6 @@ Access the code examples by clicking on the products 🏂 in the table below:
 | ------------------------------------------------------------------- | --------------------------------------- |--------------|
 | [Persona-Predict](products/persona-predict)                         | Text-Based Personality Prediction       | Claudia      | 
 | [Power-Skills](products/power-skills)                               | Understand your Soft-Skills             | Geni         |
-| [Power-Skills](products/reports)                                    | Understand your Soft-Skills             | Neninha      |
+| [Power-Skills](products/reports)                                    | Generation of Personalized Reports      | Neninha      |
+| [Spectrum](product/spectrum)                                        | Text to Audio Analysis                  | Silvia       |
 | [Five-Factor-E](https://github.com/NeuroQuestAi/five-factor-e)      | Big-Five Inventory based on IPIP-NEO    | Eleonora     |
