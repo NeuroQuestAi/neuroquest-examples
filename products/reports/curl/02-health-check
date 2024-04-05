@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+curl -X GET https://api-reports.neuroquest.ai/api/v1/health/check \
+  -H "Content-Type: application/json" \
+  -H "token: ${NQ_TOKEN}" | jq .
+
+exit 0

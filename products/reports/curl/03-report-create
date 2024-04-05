@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo -e "Document ID: ${NQ_POWER_SKILLS_ANALYSIS_DOC_ID}"
+echo -e "Profile Picture: ${NQ_PROFILE_PICTURE}"
+echo -e "Report Template: ${NQ_REPORT_TEMPLATE}"
+
+curl -X POST https://api-reports.neuroquest.ai/api/v1/report/create \
+  -H "Content-Type: application/json" \
+  -H "token: ${NQ_TOKEN}" \
+  -d "{\"document_id\": \"${NQ_POWER_SKILLS_ANALYSIS_DOC_ID}\", \"profile_picture\": \"${NQ_PROFILE_PICTURE}\", \"report_template\": \"${NQ_REPORT_TEMPLATE}\"}" | jq .
+
+exit 0
