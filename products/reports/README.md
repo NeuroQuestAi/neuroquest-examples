@@ -8,7 +8,6 @@ https://neuroquest.ai)
 Examples using the [Reports](https://docs.neuroquest.ai/reports/) API:
 
   - [Curl](curl)
-  - [Node](node)
   - [Rust](rust)
   - [Python](python)
 
