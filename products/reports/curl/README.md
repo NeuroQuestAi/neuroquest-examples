@@ -36,16 +36,26 @@ curl -X POST https://api-reports.neuroquest.ai/api/v1/auth/login \
 
 Or check script: [01-auth-login](01-auth-login)
 
+### Check service health
+
+```shell
+curl -X GET https://api-reports.neuroquest.ai/api/v1/health/check \
+  -H "Content-Type: application/json" \
+  -H "token: my-token" | jq .
+```
+
+Or check script: [02-health-check](02-health-check)
+
 ### Creating the report
 
 ```shell
 curl -X POST https://api-reports.neuroquest.ai/api/v1/report/create \
   -H "Content-Type: application/json" \
   -H "token: my-token" \
-  -d '{"document_id": "XX", "profile_picture": "XX", "report_template": "TNQ1"}' | jq .
+  -d '{"document_id": "5aXKOmoTcFWccalUBmj6", "profile_picture": "https://test.com/profile.png", "report_template": "TNQ1"}' | jq .
 ```
 
-Or check script: [03-report-create](03-report-create). 
+Or check script: [03-report-create](03-report-create)
 
 ### Logout
 
