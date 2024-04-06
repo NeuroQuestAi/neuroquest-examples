@@ -18,7 +18,7 @@ Define the environment variables with your information:
 ```shell
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
-export NQ_TOKEN=""
+export NQ_TOKEN="..."
 export NQ_POWER_SKILLS_ANALYSIS_DOC_ID="..."
 export NQ_REPORT_TEMPLATE="TNQ1"
 export NQ_PROFILE_PICTURE="https://media.neuroquest.ai/reports/img/profile-1.png"

@@ -50,8 +50,8 @@ async def create():
             data=json.dumps(
                 {
                     "document_id": os.getenv("NQ_POWER_SKILLS_ANALYSIS_DOC_ID"),
-                    "profile_picture": os.getenv("NQ_REPORT_TEMPLATE"),
-                    "report_template": os.getenv("TNQ1"),
+                    "profile_picture": os.getenv("NQ_PROFILE_PICTURE"),
+                    "report_template": os.getenv("NQ_REPORT_TEMPLATE"),
                 }
             ),
         ) as resp:
