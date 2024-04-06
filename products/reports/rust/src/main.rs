@@ -33,11 +33,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
 
         if args[1] == "--login" {
-            api_predict_login(&user, &password).await?;
+            api_report_login(&user, &password).await?;
         } else if args[1] == "--logout" {
-            api_predict_logout(&user, &token).await?;
+            api_report_logout(&user, &token).await?;
         } else if args[1] == "--create" {
-            api_predict_create(&document_id, &report_template, &profile_picture, &token).await?;
+            api_report_create(&document_id, &report_template, &profile_picture, &token).await?;
         } else {
             println!("Invalid option: {}", args[1]);
         }
@@ -50,7 +50,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-async fn api_predict_login(user: &str, password: &str) -> Result<(), Box<dyn std::error::Error>> {
+async fn api_report_login(user: &str, password: &str) -> Result<(), Box<dyn std::error::Error>> {
     let data = Login {
         email: user.to_string(),
         password: password.to_string(),
@@ -68,7 +68,7 @@ async fn api_predict_login(user: &str, password: &str) -> Result<(), Box<dyn std
     Ok(())
 }
 
-async fn api_predict_logout(user: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
+async fn api_report_logout(user: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
     let url = format!(
         "https://api-reports.neuroquest.ai/api/v1/auth/logout?email={}",
         user
@@ -86,7 +86,7 @@ async fn api_predict_logout(user: &str, token: &str) -> Result<(), Box<dyn std::
     Ok(())
 }
 
-async fn api_predict_create(document_id: &str, report_template: &str, profile_picture: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
+async fn api_report_create(document_id: &str, report_template: &str, profile_picture: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
     let data = Report {
         document_id: document_id.to_string(),
         report_template: report_template.to_string(),
