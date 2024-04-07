@@ -19,6 +19,7 @@ Define the environment variables with your information:
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN="..."
+export NQ_ESSAY="Tell me something in more than 100 words..."
 ```
 
 To create an audio analysis, you must first transcribe the audio using [Spectrum API](https://github.com/NeuroQuestAi/neuroquest-examples/tree/main/products/spectrum) and 
