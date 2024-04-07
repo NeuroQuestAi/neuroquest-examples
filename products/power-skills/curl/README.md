@@ -42,7 +42,7 @@ curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-tex
   -d '{"name": "Gabriela Ehlert", "essay": "My text to be analyzed..."}' | jq .
 ```
 
-Or check script: [03-predict-create](03-predict-create)
+Or check script: [03-predict-create-by-text](03-predict-create-by-text)
 
 ### Creating an audio analysis
 
@@ -55,7 +55,7 @@ curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-aud
   -d '{"name": "Gabriela Ehlert", "document_id": "my-audio-id"}' | jq .
 ```
 
-Or check script: [03-predict-create](03-predict-create)
+Or check script: [03-predict-create-by-audio](03-predict-create-by-audio)
 
 ### Logout
 
