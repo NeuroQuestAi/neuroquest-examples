@@ -28,8 +28,6 @@ obtain the audio analysis document ID.
 export NQ_AUDIO_DOC_ID="q01vDxALebMNfDBKo33o"
 ```
 
-`Note:` If you use the scripts.
-
 ### Login
 
 ```shell
