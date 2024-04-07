@@ -19,7 +19,6 @@ Define the environment variables with your information:
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN=""
-export NQ_ESSAY="My text..."
 ```
 
 `Note:` If you use the scripts.
