@@ -47,7 +47,7 @@ python predict.py --login
 ### Creating an analysis (text)
 
 ```shell
-python predict.py --create
+python predict.py --create-by-text
 ```
 
 `Note:` An analysis will be created with the text defined in the environment variable: NQ_ESSAY
@@ -55,10 +55,8 @@ python predict.py --create
 ### Creating an analysis (audio)
 
 ```shell
-python predict.py --audio
+python predict.py --create-by-audio
 ```
-
-`Note:` An analysis will be created with the audio defined in the environment variable: NQ_AUDIO
 
 ### Logout
 
