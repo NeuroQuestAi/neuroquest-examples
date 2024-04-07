@@ -46,7 +46,7 @@ Or check script: [03-predict-create](03-predict-create)
 
 ### Creating an audio analysis
 
-To create an audio analysis, you must first transcribe the audio using the [Spectrum API](../products/spectrum).
+To create an audio analysis, you must first transcribe the audio using the [Spectrum API](https://github.com/NeuroQuestAi/neuroquest-examples/tree/main/products/spectrum).
 
 ```shell
 curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-audio \
