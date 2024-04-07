@@ -8,8 +8,5 @@ https://neuroquest.ai)
 Examples using the [Spectrum](https://docs.neuroquest.ai/spectrum/) API:
 
   - [Curl](curl)
-  - [Node](node)
-  - [Rust](rust)
-  - [Python](python)
   - [Jupyter-Notebook](notebooks)
 
