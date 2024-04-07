@@ -19,10 +19,14 @@ Define the environment variables with your information:
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN="..."
-export NQ_ESSAY="My text..."
 ```
 
-`Note:` All variables must be defined. The audio file must be a minimum of 10 seconds and a maximum of 60 seconds.
+To create an audio analysis, you must first transcribe the audio using [Spectrum API](https://github.com/NeuroQuestAi/neuroquest-examples/tree/main/products/spectrum) and 
+obtain the audio analysis document ID.
+
+```shell
+export NQ_AUDIO_DOC_ID="q01vDxALebMNfDBKo33o"
+```
 
 ### Build
 
