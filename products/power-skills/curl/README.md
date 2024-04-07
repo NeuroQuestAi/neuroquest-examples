@@ -18,7 +18,7 @@ Define the environment variables with your information:
 ```shell
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
-export NQ_TOKEN=""
+export NQ_TOKEN="..."
 ```
 
 `Note:` If you use the scripts.
@@ -33,16 +33,29 @@ curl -X POST https://api-power-skills.neuroquest.ai/api/v1/auth/login \
 
 Or check script: [01-auth-login](01-auth-login)
 
-### Creating an analysis
+### Creating a text analysis
 
 ```shell
-curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create \
+curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-text \
   -H "Content-Type: application/json" \
   -H "token: my-token" \
   -d '{"name": "Gabriela Ehlert", "essay": "My text to be analyzed..."}' | jq .
 ```
 
-Or check script: [03-predict-create](03-predict-create). You can also use **audio**, see: [04-predict-create](04-predict-create)
+Or check script: [03-predict-create](03-predict-create)
+
+### Creating an audio analysis
+
+To create an audio analysis, you must first transcribe the audio using the [Spectrum API](../products/spectrum).
+
+```shell
+curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-audio \
+  -H "Content-Type: application/json" \
+  -H "token: my-token" \
+  -d '{"name": "Gabriela Ehlert", "document_id": "my-audio-id"}' | jq .
+```
+
+Or check script: [03-predict-create](03-predict-create)
 
 ### Logout
 
