@@ -6,7 +6,7 @@ const data = {
 };
 
 axios
-  .post('https://api-power-skills.neuroquest.ai/api/v1/predict/create', data, {
+  .post('https://api-power-skills.neuroquest.ai/api/v1/predict/create/by-text', data, {
     headers: { token: process.env.NQ_TOKEN },
   })
   .then((response) => {
