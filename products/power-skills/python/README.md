@@ -18,10 +18,8 @@ Define the environment variables with your information:
 ```shell
 export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
-export NQ_TOKEN="test"
+export NQ_TOKEN="..."
 export NQ_ESSAY="My text..."
-export NQ_AUDIO="../curl/audio/OBAMA-SPEECH01.ogg"
-export NQ_AUDIO_LANG="en"
 ```
 
 `Note:` All variables must be defined. The audio file must be a minimum of 10 seconds and a maximum of 60 seconds.
