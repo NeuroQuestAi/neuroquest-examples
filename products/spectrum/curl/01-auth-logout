@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+curl -X GET https://api-spectrum.neuroquest.ai/api/v1/auth/logout?email={$NQ_USER} \
+  -H "Content-Type: application/json" \
+  -H "token: ${NQ_TOKEN}" | jq .
+
+exit 0

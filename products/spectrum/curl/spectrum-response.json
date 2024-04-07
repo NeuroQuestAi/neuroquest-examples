@@ -1,0 +1,27 @@
+{
+   "code":201,
+   "status":"success",
+   "data":{
+      "document_id":"q01vDxALebMNfDBKo33o",
+      "url":"https://storage.googleapis.com/nq-audio/prd/power-skills/neuroquest.ai/ca56bb3c-e1c7-4183-867c-c3b0398261ab/TRUMP-WEF-2018.wav",
+      "description":"Spectrum API",
+      "created":"2024-04-07 19:55:15 UTC",
+      "transcript":"Thank you guys very much. It's a privilege to be here at this Farm where leaders and business science art diplomacy and world affairs have gathered for many many years to discuss how we can advance Prosperity security and peace. I'm here today to represent the interests of the American people and do a firm America's friendship and partnership in building a better world. Like all nations represented at this great Forum America hopes for a future in which everyone can prosper and every child can grow up free from violence poverty and fear. Over the past year, we have made extraordinary strides in the US. We're lifting up forgotten communities creating exciting New Opportunities and helping every American find their path to the American dream.",
+      "confidence":96.13156914710999,
+      "lang":"en",
+      "provider":{
+         "name":"NeuroQuest AI",
+         "product":"spectrum",
+         "api":{
+            "name":"Silvia",
+            "description":"Audio Analysis",
+            "version":"v1.0.0"
+         },
+         "date":"2024-04-07 19:55:15 UTC"
+      },
+      "owner":{
+         "user_id":"bOvdNgU0yud10UsAtohSeh2g0ja9",
+         "email":"joker@neuroquest.aia"
+      }
+   }
+}

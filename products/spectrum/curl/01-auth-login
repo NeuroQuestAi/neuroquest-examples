@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+curl -X POST https://api-spectrum.neuroquest.ai/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d "{\"email\": \"${NQ_USER}\", \"password\": \"${NQ_PASSWORD}\"}" | jq .
+
+exit 0

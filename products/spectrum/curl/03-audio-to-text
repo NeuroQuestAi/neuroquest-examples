@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+AUDIO_FILENAME="audio/TRUMP-WEF-2018.wav"
+AUDIO_LANG="en"
+
+resp=$(curl -X POST https://api-spectrum.neuroquest.ai/api/v1/audio/to-text \
+  -H "Content-Type: multipart/form-data" \
+  -F "audio_file=@${AUDIO_FILENAME}" \
+  -F "audio_lang=${AUDIO_LANG}" \
+  -H "token: ${NQ_TOKEN}" | jq .)
+
+echo "${resp}"
+AUDIO_ID=$(echo "${resp}" | jq -r '.data.audio')
+
+exit 0
