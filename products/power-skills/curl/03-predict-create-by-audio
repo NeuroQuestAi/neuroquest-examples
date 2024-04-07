@@ -6,6 +6,6 @@ NQ_AUDIO_DOC_ID="q01vDxALebMNfDBKo33o"
 curl -X POST https://api-power-skills.neuroquest.ai/api/v1/predict/create \
   -H "Content-Type: application/json" \
   -H "token: ${NQ_TOKEN}" \
-  -d "{\"name\": \"Gabriela Ehlert\", \"essay\": \"${NQ_AUDIO_DOC_ID}\"}" | jq .
+  -d "{\"name\": \"Gabriela Ehlert\", \"document_id\": \"${NQ_AUDIO_DOC_ID}\"}" | jq .
 
 exit 0
