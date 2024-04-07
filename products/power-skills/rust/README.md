@@ -60,5 +60,3 @@ cargo run -- --create-by-audio
 ```shell
 cargo run -- --logout
 ```
-
-For more details, use `cargo run -- --help`
