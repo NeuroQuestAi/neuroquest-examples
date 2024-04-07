@@ -11,7 +11,6 @@ Examples using the [Power Skills](https://docs.neuroquest.ai/power-skills/) API:
   - [Node](node)
   - [Rust](rust)
   - [Python](python)
-  - [Jupyter-Notebook](notebooks)
 
 ## Supported Languages 🌍
 
