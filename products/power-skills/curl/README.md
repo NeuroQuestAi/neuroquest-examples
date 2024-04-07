@@ -21,6 +21,13 @@ export NQ_PASSWORD="my-password"
 export NQ_TOKEN="..."
 ```
 
+To create an audio analysis, you must first transcribe the audio using [Spectrum API](https://github.com/NeuroQuestAi/neuroquest-examples/tree/main/products/spectrum) and 
+obtain the audio analysis document ID.
+
+```shell
+export NQ_AUDIO_DOC_ID="q01vDxALebMNfDBKo33o"
+```
+
 `Note:` If you use the scripts.
 
 ### Login
