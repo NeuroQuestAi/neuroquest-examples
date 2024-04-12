@@ -54,5 +54,4 @@ curl -X GET https://api-spectrum.neuroquest.ai/api/v1/auth/logout?email=joker@ne
 
 Or check script: [01-auth-logout](01-auth-logout)
 
-> Note: The audio files are examples only and were collected: [American Rhetoric](https://www.americanrhetoric.com/barackobamaspeeches.htm) and [Miller Center](https://millercenter.org/the-presidency/presidential-speeches/january-26-2018-address-world-economic-forum)
-
+> Note: The audio files are examples only and were collected: [American Rhetoric](https://www.americanrhetoric.com/barackobamaspeeches.htm), [Miller Center](https://millercenter.org/the-presidency/presidential-speeches/january-26-2018-address-world-economic-forum), [Biblioteca Presidência da República](http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/michel-temer/audios/audio-do-discurso-do-presidente-da-republica-michel-temer-durante-cerimonia-de-inauguracao-da-1a-etapa-do-projeto-sirius-campinas-sp). 
