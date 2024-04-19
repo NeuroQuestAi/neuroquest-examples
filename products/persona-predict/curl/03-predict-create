@@ -5,6 +5,6 @@ ESSAY="My story begins in an ordinary neighborhood, where my parents always emph
 curl -X POST https://api-persona-predict.neuroquest.ai/api/v1/predict/create \
   -H "Content-Type: application/json" \
   -H "token: ${NQ_TOKEN}" \
-  -d "{\"name\": \"John Green\", \"essay\": \"${ESSAY}\"}" | jq .
+  -d "{\"name\": \"John Green\", \"essay\": \"${ESSAY}\", \"task\": \"false\"}" | jq .
 
 exit 0

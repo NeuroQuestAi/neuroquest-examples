@@ -43,7 +43,7 @@ curl -X POST https://api-persona-predict.neuroquest.ai/api/v1/predict/create \
   -d '{"name": "John Green", "essay": "My text to be analyzed..."}' | jq .
 ```
 
-Or check script: [03-predict-create](03-predict-create)
+Or check script: [03-predict-create](03-predict-create). To create the analysis asynchronously/tasks, use the [03-predict-create-task](03-predict-create-task) script as examples.
 
 ### Logout
 
@@ -54,5 +54,4 @@ curl -X GET https://api-persona-predict.neuroquest.ai/api/v1/auth/logout?email=m
 ```
 
 Or check script: [01-auth-logout](products/persona-predict/curl/01-auth-logout)
-
 

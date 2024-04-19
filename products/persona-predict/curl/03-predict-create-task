@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+ESSAY="In the bustling heart of the city, amidst skyscrapers that kiss the sky and streets pulsating with energy, resides a story of perseverance, learning, and triumph. The professional trajectory of Daniel Mendes, a 40-year-old man, weaves a tapestry of experiences that unfolded over two decades. Born in a small town in the countryside, Daniel was always driven by a curious restlessness and a burning desire to make an impact. His journey began modestly, with a degree in Mechanical Engineering from the local university. Soon after graduation, he found himself at a crossroads—between following the predictable path or venturing beyond familiar horizons. Determined to follow his instincts, Daniel moved to the big city in search of opportunities. His first stop was a manufacturing company, where he delved into the mechanics of production processes. Over the years, he stood out for his ability to solve complex problems and meticulous attention to detail. However, an unrelenting quest for challenges led him to change course. He joined an emerging technology startup, where his passion for innovation found fertile ground. His knack for applying engineering principles to creative solutions made him a valuable asset to the team. While navigating the fast-paced startup environment, Daniel honed his skills in collaboration and leadership, realizing that success wasn't solely individual but depended on the team's synergy. With time, Daniel developed a natural inclination to understand the nuances of interpersonal relationships and the motivational factors driving people. This led him to pursue knowledge in Organizational Psychology, opening a new dimension in his journey. His ability to comprehend human behaviors and lead with empathy became a turning point. With an appetite for continuous learning, Daniel took on progressively more challenging leadership roles. His capacity to communicate a clear vision and inspire others to follow yielded tangible results. As his career advanced, he found himself leading cross-functional teams on projects that transcended geographical boundaries. His holistic understanding of people and processes enabled him to tackle complex challenges strategically. At 40, Daniel has become a living embodiment of growth and constant evolution. His résumé is a narrative of diversity, with experiences ranging from engineering to psychology, from production to inspirational leadership. He hasn't just amassed technical and emotional skills; he's learned to seamlessly weave the two together to shape a distinctive and successful career. Today, as the director of an organizational development consulting firm, Daniel is at the epicenter of his passion—helping other organizations thrive by nurturing their internal talents. His mastery of Emotional Intelligence allows him to genuinely connect with the challenges faced by his clients, and his deep understanding of the Big Five influences his personalized approach to coaching and leadership development. Looking back on his journey, Daniel acknowledges that every choice, every challenge, and every moment of self-discovery contributed to the man he has become. He understands that a career is more than a collection of titles; it's an ongoing quest to become the best version of oneself. With humility and gratitude, he reflects on the path that took him from a young engineer to a visionary leader. Daniel Mendes's story is a celebration of human resilience, the desire to learn and grow, and the belief that every experience, be it challenging or rewarding, shapes the road to success. His legacy serves as an inspiring reminder that, regardless of age or starting point, it's possible to build a professional trajectory rich in meaning and impact."
+
+check_task_status() {
+  while true; do
+    resp=$(curl -s -X GET "https://api-persona-predict.neuroquest.ai/api/v1/predict/task/status?task_id=${task_id}" -H "token: ${NQ_TOKEN}")
+    task_status=$(echo ${resp} | jq -r '.data.status')
+
+    if [ "${task_status}" = "completed" ]; then
+      echo "Task completed successfully!" && echo ${resp} | jq . && break  
+    elif [ "${task_status}" = "processing" ]; then
+      echo "Waiting..." && sleep 1 
+    else
+      echo "Error: ${resp}" && break
+    fi
+  done
+}
+
+main() {
+  resp=$(curl -s -X POST "https://api-persona-predict.neuroquest.ai/api/v1/predict/create" \
+    -H "Content-Type: application/json" \
+    -H "token: ${NQ_TOKEN}" \
+    -d "{\"name\": \"Rachel Green\", \"essay\": \"${ESSAY}\", \"task\": \"true\"}" | jq .)
+
+  task_id=$(echo ${resp} | jq -r '.data.task_id')
+
+  check_task_status $task_id
+}
+
+main && exit 0
