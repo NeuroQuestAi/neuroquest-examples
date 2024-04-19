@@ -339,6 +339,53 @@ def plot_big_five_neuroticism_facets_bar(
     )
 
 
+def plot_sentiment_analysis_bar(score_sentiment_analysis: list) -> str:
+    sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
+
+    labels = [label.capitalize() for label in score_sentiment_analysis.keys()]
+    lowercase_keys = [label.lower() for label in score_sentiment_analysis.keys()]
+    scores = [
+        score_sentiment_analysis[lowercase_keys[i]]["result"]
+        for i in range(len(labels))
+    ]
+
+    df = pd.DataFrame({"Sentiment": labels, "Percentage": scores})
+
+    plt.figure(figsize=(12, 6))
+    colors = sns.color_palette("Reds", len(labels))
+
+    sns.barplot(
+        data=df,
+        x="Sentiment",
+        y="Percentage",
+        palette=colors,
+        hue="Sentiment",
+        legend=False,
+    )
+
+    for x, bar in zip(scores, plt.gca().patches):
+        plt.gca().annotate(
+            f"{x:.2f}%",
+            (bar.get_x() + bar.get_width() / 2, bar.get_height()),
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            color="black",
+        )
+
+    plt.xlabel("Sentiment")
+    plt.ylabel("Percentage")
+    plt.title("Sentiment Labels")
+
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    plt.savefig("plots/sentiment_analysis_plot_bar.png", bbox_inches="tight")
+    plt.close()
+
+    return "<center><img src='plots/sentiment_analysis_plot_bar.png'/></center>"
+
+
 def plot_orvis_facets_bar(
     score_orvis_facets: list,
 ) -> str:
