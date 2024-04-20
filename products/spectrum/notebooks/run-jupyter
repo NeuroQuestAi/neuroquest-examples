@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 poetry export --without-hashes --format=requirements.txt > requirements.txt
-cp -rf requirements.txt ../../../binder
+# cp -rf requirements.txt ../../../binder
 jupyter lab --no-browser
