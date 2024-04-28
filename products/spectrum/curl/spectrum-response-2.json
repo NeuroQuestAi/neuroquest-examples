@@ -1,0 +1,52 @@
+{
+   "code":201,
+   "status":"success",
+   "data":{
+      "description":"Spectrum API",
+      "speech_emotion_recognition":[
+         {
+            "emotion":"angry",
+            "result":4.47450615465641
+         },
+         {
+            "emotion":"disgust",
+            "result":0.8869564160704613
+         },
+         {
+            "emotion":"fear",
+            "result":8.856366574764252
+         },
+         {
+            "emotion":"happy",
+            "result":85.78179478645325
+         },
+         {
+            "emotion":"neutral",
+            "result":0.000003782433211085845
+         },
+         {
+            "emotion":"sad",
+            "result":0.00038070847949711606
+         }
+      ],
+      "url":"https://st-audio.neuroquest.ai/prd/power-skills/neuroquest.ai/46e2270e-604f-45d2-94dc-e97316995674/John-F-Kennedy-Speech-1962-09-12-CUT.mp3",
+      "owner":{
+         "user_id":"aPumQgU0iud90UsEtohNeh6g0011",
+         "email":"joker@neuroquest.ai"
+      },
+      "provider":{
+         "date":"2024-04-28 20:22:54 UTC",
+         "product":"spectrum",
+         "api":{
+            "version":"v1.0.0",
+            "description":"Audio Analysis",
+            "name":"Silvia"
+         },
+         "name":"NeuroQuest AI"
+      },
+      "created":"2024-04-28 20:22:54 UTC",
+      "lang":"en",
+      "confidence":92.31106638908386,
+      "transcript":"Can we help decide whether this new ocean will be a sea of tea or a new terrifying Theater of War. I do not say that we should or will go unprotected against the hostel misuse of space anymore than we go in protecting against the hostile or see but I do say that space can be explored and nasty without feeding the fires of War without repeating the mistakes that man is made and extending his rent around this Global hours. There is no Strife. No Prejudice. No National conflict in outer space. It hasn't the Hostile to it. All its Conquest deserves the best of all mankind and it's opportunity for peaceful cooperation may never come again."
+   }
+}

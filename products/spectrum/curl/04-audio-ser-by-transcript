@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+resp=$(curl -X PUT https://api-spectrum.neuroquest.ai/api/v1/audio/speech-emotion-recognition/by-transcript?document_id=sp2QZvB4u5tUByXM1lMV \
+  -H "Content-Type: application/json" \
+  -H "token: ${NQ_TOKEN}" | jq .)
+
+echo "${resp}"
+
+exit 0

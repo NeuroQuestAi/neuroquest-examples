@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-AUDIO_FILENAME="audio/TRUMP-WEF-2018.wav"
+AUDIO_FILENAME="./audio/John-F-Kennedy-Speech-1962-09-12-CUT.mp3"
 AUDIO_LANG="en"
 
 resp=$(curl -X POST https://api-spectrum.neuroquest.ai/api/v1/audio/to-text \
@@ -10,6 +10,5 @@ resp=$(curl -X POST https://api-spectrum.neuroquest.ai/api/v1/audio/to-text \
   -H "token: ${NQ_TOKEN}" | jq .)
 
 echo "${resp}"
-AUDIO_ID=$(echo "${resp}" | jq -r '.data.audio')
 
 exit 0
