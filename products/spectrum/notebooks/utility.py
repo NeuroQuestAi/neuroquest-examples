@@ -26,10 +26,38 @@ def audio_to_text(
     )
 
     if resp.status_code == 201:
-        data = resp.json()
+        data = resp.json() or {}
         if save_result:
-            with open("predict-result.json", "w") as f:
+            with open("audio-transcription-result.json", "w") as f:
                 json.dump(data, f)
         return data
     print(f"Erro: {resp.status_code} -> {resp.text}")
     return {}
+
+
+def get_audio_to_text_in_file() -> dict:
+    with open("audio-transcription-result.json", "r") as f:
+        data = json.load(f) or {}
+    return data
+
+
+def audio_ser(token: str, audio_document_id: str, save_result: bool = False) -> dict:
+    resp = requests.put(
+        f"https://api-spectrum.neuroquest.ai/api/v1/audio/speech-emotion-recognition/by-transcript?document_id={audio_document_id}",
+        headers={"Content-Type": "application/json", "token": token},
+    )
+
+    if resp.status_code == 201:
+        data = resp.json() or {}
+        if save_result:
+            with open("audio-ser-result.json", "w") as f:
+                json.dump(data, f)
+        return data
+    print(f"Erro: {resp.status_code} -> {resp.text}")
+    return {}
+
+
+def get_audio_ser_in_file() -> dict:
+    with open("audio-ser-result.json", "r") as f:
+        data = json.load(f) or {}
+    return data
