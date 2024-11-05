@@ -17,7 +17,7 @@ struct Essay {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if let (Ok(user), Ok(password), Ok(token), Ok(text)) = (
-        env::var("NQ_USER"),
+        env::var("NQ_EMAIL"),
         env::var("NQ_PASSWORD"),
         env::var("NQ_TOKEN"),
         env::var("NQ_ESSAY"),
@@ -40,7 +40,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     } else {
         println!(
-            ">Environment variables not defined: NQ_USER or NQ_PASSWORD or NQ_TOKEN or NQ_ESSAY"
+            ">Environment variables not defined: NQ_EMAIL or NQ_PASSWORD or NQ_TOKEN or NQ_ESSAY"
         );
     }
 
@@ -54,7 +54,7 @@ async fn api_predict_login(user: &str, password: &str) -> Result<(), Box<dyn std
     };
 
     let res = reqwest::Client::new()
-        .post("https://api-persona-predict.neuroquest.ai/api/v1/auth/login")
+        .post("https://api-persona-predict.neuroquest.ai/api/v2/auth/login")
         .header(reqwest::header::CONTENT_TYPE, "application/json")
         .header(reqwest::header::ACCEPT, "application/json")
         .json(&data)
@@ -67,7 +67,7 @@ async fn api_predict_login(user: &str, password: &str) -> Result<(), Box<dyn std
 
 async fn api_predict_logout(user: &str, token: &str) -> Result<(), Box<dyn std::error::Error>> {
     let url = format!(
-        "https://api-persona-predict.neuroquest.ai/api/v1/auth/logout?email={}",
+        "https://api-persona-predict.neuroquest.ai/api/v2/auth/logout?email={}",
         user
     );
 
@@ -90,7 +90,7 @@ async fn api_predict_create(text: &str, token: &str) -> Result<(), Box<dyn std::
     };
 
     let res = reqwest::Client::new()
-        .post("https://api-persona-predict.neuroquest.ai/api/v1/predict/create")
+        .post("https://api-persona-predict.neuroquest.ai/api/v2/predict/create")
         .header(reqwest::header::CONTENT_TYPE, "application/json")
         .header(reqwest::header::ACCEPT, "application/json")
         .header("token", token)

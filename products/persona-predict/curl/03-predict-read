@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-curl -X GET https://api-persona-predict.neuroquest.ai/api/v1/predict/read?email={$NQ_USER} \
+curl -X GET https://api-persona-predict.neuroquest.ai/api/v2/predict/read?email={$NQ_EMAIL} \
   -H "Content-Type: application/json" \
   -H "token: ${NQ_TOKEN}" | jq .
 

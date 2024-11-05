@@ -1,15 +1,14 @@
 [tool.poetry]
 name = "predict"
-version = "0.1.0"
-description = "Persona-Predict Examples"
-authors = ["Ederson Corbari <ecorbari@protonmail.com>"]
+version = "0.1.1"
+description = "Persona-Predict Examples V2"
+authors = ["Ederson Corbari <e@NeuroQuest.ai>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 aiohttp = "^3.8.5"
 isort = "^5.12.0"
-
 
 [build-system]
 requires = ["poetry-core"]

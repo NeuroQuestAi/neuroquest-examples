@@ -6,8 +6,8 @@ const data = {
 };
 
 axios
-  .post('https://api-persona-predict.neuroquest.ai/api/v1/predict/create', data, {
-    headers: { token: process.env.NQ_TOKEN },
+  .post('https://api-persona-predict.neuroquest.ai/api/v2/predict/create', data, {
+    headers: {token: process.env.NQ_TOKEN},
   })
   .then((response) => {
     console.log(JSON.stringify(response.data, null, 2));

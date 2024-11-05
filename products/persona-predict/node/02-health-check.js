@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 axios
-  .get('https://api-persona-predict.neuroquest.ai/api/v1/health/check', {
-     headers: { token:   process.env.NQ_TOKEN},
-	 params: { email: process.env.NQ_USER },
+  .get('https://api-persona-predict.neuroquest.ai/api/v2/health/check', {
+     headers: {token: process.env.NQ_TOKEN},
+     params: {email: process.env.NQ_EMAIL},
   })
   .then((response) => {
     console.log(JSON.stringify(response.data, null, 2));

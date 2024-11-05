@@ -9,17 +9,17 @@ https://neuroquest.ai)
 Documentation of the **Persona Predict** API specification please access the address: [apis.neuroquest.ai/persona-predict](https://apis.neuroquest.ai/persona-predict/) for 
 information about the *product* access the address: [docs.neuroquest.ai/persona-predict](https://docs.neuroquest.ai/persona-predict/)
 
-To use **Persona Predict** with `rust`:
+To use **Persona Predict V2** with `rust`:
 
 ### Environment variables
 
 Define the environment variables with your information:
 
 ```shell
-export NQ_USER="my-email"
+export NQ_EMAIL="my-email"
 export NQ_PASSWORD="my-password"
 export NQ_TOKEN=""
-export NQ_ESSAY="My text..."
+export NQ_ESSAY=""
 ```
 
 ### Build
@@ -27,7 +27,7 @@ export NQ_ESSAY="My text..."
 In this directory:
 
 ```shell
-cargo build
+cargo update && cargo build
 ```
 
 ### Login
@@ -36,7 +36,21 @@ cargo build
 cargo run -- --login
 ```
 
+With JSON output, set the environment variable with your **token**:
+
+```shell
+export NQ_TOKEN="acKhbQcipiaSUzI1NiIDF"
+```
+
 ### Creating an analysis
+
+First define a text in the **NQ_ESSAY** variable:
+
+```shell
+export NQ_ESSAY="My text here that will be analyzed..."
+```
+
+Now create the analysis:
 
 ```shell
 cargo run -- --create

@@ -5,7 +5,7 @@
 [![Powered by NeuroQuestAI](https://img.shields.io/badge/powered%20by-NeuroQuestAI-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](
 https://neuroquest.ai)
 
-Examples using the [Persona Predict](https://docs.neuroquest.ai/persona-predict/) API:
+Examples using the [Persona Predict V2](https://docs.neuroquest.ai/persona-predict/) API:
 
   - [Curl](curl)
   - [Node](node)
@@ -21,3 +21,4 @@ The model is trained natively with **English** 🇺🇸 and **Brazilian Portugue
 |------------------|---------| ------------------|
 | English          | OK      | **YES**           |
 | Portuguese       | OK      | **YES**           |
+

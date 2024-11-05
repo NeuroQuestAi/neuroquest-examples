@@ -9,10 +9,10 @@ import aiohttp
 async def login():
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            "https://api-persona-predict.neuroquest.ai/api/v1/auth/login",
+            "https://api-persona-predict.neuroquest.ai/api/v2/auth/login",
             headers={"Content-Type": "application/json"},
             data=json.dumps(
-                {"email": os.getenv("NQ_USER"), "password": os.getenv("NQ_PASSWORD")}
+                {"email": os.getenv("NQ_EMAIL"), "password": os.getenv("NQ_PASSWORD")}
             ),
         ) as resp:
             if resp.status == 200:
@@ -26,7 +26,7 @@ async def login():
 async def logout():
     async with aiohttp.ClientSession() as session:
         async with session.get(
-            f"https://api-persona-predict.neuroquest.ai/api/v1/auth/logout?email={os.getenv('NQ_USER')}",
+            f"https://api-persona-predict.neuroquest.ai/api/v2/auth/logout?email={os.getenv('NQ_EMAIL')}",
             headers={
                 "Content-Type": "application/json",
                 "token": os.getenv("NQ_TOKEN"),
@@ -42,7 +42,7 @@ async def logout():
 async def create():
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            "https://api-persona-predict.neuroquest.ai/api/v1/predict/create",
+            "https://api-persona-predict.neuroquest.ai/api/v2/predict/create",
             headers={
                 "Content-Type": "application/json",
                 "token": os.getenv("NQ_TOKEN"),
@@ -60,7 +60,7 @@ async def create():
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="Example using the Person-Predict API")
+    parser = argparse.ArgumentParser(description="Example using the Persona-Predict V2 API")
 
     parser.add_argument("--login", action="store_true", help="Login to the API")
     parser.add_argument("--logout", action="store_true", help="Logout of the API")
@@ -80,11 +80,11 @@ async def main():
 
 if __name__ == "__main__":
     if (
-        not os.getenv("NQ_USER")
+        not os.getenv("NQ_EMAIL")
         or not os.getenv("NQ_PASSWORD")
         or not os.getenv("NQ_TOKEN")
         or not os.getenv("NQ_ESSAY")
     ):
-        print("Environment variables not defined! Check: NQ_USER or NQ_PASSWORD or NQ_TOKEN or NQ_ESSAY.")
+        print("Environment variables not defined! Check: NQ_EMAIL or NQ_PASSWORD or NQ_TOKEN or NQ_ESSAY.")
     else:
         asyncio.run(main())

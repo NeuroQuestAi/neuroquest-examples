@@ -4,13 +4,13 @@ ESSAY="In the bustling heart of the city, amidst skyscrapers that kiss the sky a
 
 check_task_status() {
   while true; do
-    resp=$(curl -s -X GET "https://api-persona-predict.neuroquest.ai/api/v1/predict/task/status?task_id=${task_id}" -H "token: ${NQ_TOKEN}")
+    resp=$(curl -s -X GET "https://api-persona-predict.neuroquest.ai/api/v2/predict/task/status?task_id=${task_id}" -H "token: ${NQ_TOKEN}")
     task_status=$(echo ${resp} | jq -r '.data.status')
 
     if [ "${task_status}" = "completed" ]; then
       echo "Task completed successfully!"
       document_id=$(echo ${resp} | jq -r '.data.result.document_id')
-      resp=$(curl -s -X GET "https://api-persona-predict.neuroquest.ai/api/v1/predict/read?document_id=${document_id}" -H "token: ${NQ_TOKEN}")
+      resp=$(curl -s -X GET "https://api-persona-predict.neuroquest.ai/api/v2/predict/read?document_id=${document_id}" -H "token: ${NQ_TOKEN}")
       echo ${resp} | jq . && break
     elif [ "${task_status}" = "processing" ]; then
       echo "Waiting..." && sleep 1 
@@ -21,7 +21,7 @@ check_task_status() {
 }
 
 main() {
-  resp=$(curl -s -X POST "https://api-persona-predict.neuroquest.ai/api/v1/predict/create" \
+  resp=$(curl -s -X POST "https://api-persona-predict.neuroquest.ai/api/v2/predict/create" \
     -H "Content-Type: application/json" \
     -H "token: ${NQ_TOKEN}" \
     -d "{\"name\": \"Rachel Green\", \"essay\": \"${ESSAY}\", \"task\": \"true\"}" | jq .)
