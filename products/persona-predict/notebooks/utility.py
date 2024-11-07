@@ -1,4 +1,5 @@
 import json
+import base64
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,9 +10,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-def login(user: str, password: str) -> dict:
+def api_login(user: str, password: str) -> dict:
     resp = requests.post(
-        "https://api-persona-predict.neuroquest.ai/api/v1/auth/login",
+        "https://api-persona-predict.neuroquest.ai/api/v2/auth/login",
         headers={"Content-Type": "application/json"},
         json={"email": user, "password": password},
     )
@@ -21,53 +22,119 @@ def login(user: str, password: str) -> dict:
     return {}
 
 
-def predict_create(token: str, data: dict, save_result: bool = False) -> dict:
+def api_predict_create(token: str, data: dict, save_result: bool = False) -> dict:
     resp = requests.post(
-        "https://api-persona-predict.neuroquest.ai/api/v1/predict/create",
+        "https://api-persona-predict.neuroquest.ai/api/v2/predict/create",
         headers={"Content-Type": "application/json", "token": token},
         json=data,
     )
     if resp.status_code == 201:
         data = resp.json()
         if save_result:
-            with open("predict-result.json", "w") as f:
+            with open("results/persona-predict-v2.json", "w") as f:
                 json.dump(data, f)
         return data
     print(f"Erro: {resp.status_code} -> {resp.text}")
     return {}
 
 
-def get_predict_result_in_file() -> dict:
-    with open("predict-result.json", "r") as f:
+def get_api_predict_result_in_file() -> dict:
+    with open("results/persona-predict-v2.json", "r") as f:
         data = json.load(f)
     return data
 
 
 def get_my_txt_essay(lang: str = "en") -> str:
     if lang == "en":
-        return " ".join(str(open("my-essay-en.txt", "r").read()).split())
+        return " ".join(str(open("essays/my-essay-en.txt", "r").read()).split())
     elif lang == "pt":
-        return " ".join(str(open("my-essay-pt.txt", "r").read()).split())
+        return " ".join(str(open("essays/my-essay-pt.txt", "r").read()).split())
     raise ValueError("Essay not found!")
 
+def image_to_base64(image_path: str) -> base64.b64decode:
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
 
-def get_big_five(x: dict) -> dict:
-    return {
-        "O": x.get("openness").get("result"),
-        "C": x.get("conscientiousness").get("result"),
-        "E": x.get("extraversion").get("result"),
-        "A": x.get("agreeableness").get("result"),
-        "N": x.get("neuroticism").get("result"),
-    }
+def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
+    labels, parents = [], []
+    values, text = [], []
+
+    def add_sunburst_data(label: str, parent: str, value: float) -> None:
+        value = round(float(value), 2)
+        labels.append(label)  
+        parents.append(parent)  
+        values.append(value)
+        text.append(f"{label} ({value}%)") 
+
+    add_sunburst_data("Big Five", "", 100)
+
+    for personality in data["data"]["person"]["analysis"]["personalities"]:
+        for dimension, details in personality.items():
+            add_sunburst_data(dimension.capitalize(), "Big Five", details["result"])
+            for trait in details["traits"]:
+                try:
+                    facet_name, facet_value = trait["name"], trait["result"]
+                    facet_label = f"{facet_name.replace('_', ' ').capitalize()}"
+                    add_sunburst_data(facet_label, dimension.capitalize(), facet_value)
+                except ValueError:
+                    pass
+
+    fig = go.Figure(go.Sunburst(
+        labels=labels,
+        parents=parents,
+        values=values,
+        text=text,  
+        textinfo='text',
+        insidetextorientation='radial',
+    ))
+
+    fig.update_layout(
+        margin=dict(t=0, l=0, r=0, b=0),
+        width=1200,  
+        height=1200, 
+        uniformtext=dict(minsize=10, mode='hide'),  
+
+    )
+
+    base64_image = image_to_base64(image_path)
+
+    fig.update_layout(
+        images=[dict(
+            source=f"data:image/png;base64,{base64_image}",
+            xref="paper", yref="paper",
+            x=0.5, y=0.5,  
+            sizex=0.25, sizey=0.25,  
+            xanchor="center", yanchor="middle", 
+            layer="above"  
+        )],
+        margin=dict(t=0, l=0, r=0, b=0),
+        uniformtext=dict(minsize=10, mode='hide')
+    )
+
+    fig.write_image("plots/big_five_plot_sunburst.png", format="png")
+
+    return "<center><img src='plots/big_five_plot_sunburst.png'/></center>"
 
 
-def plot_big_five_bar(score_big_five: list) -> str:
+def get_big5(x: dict) -> dict:
+    if "openness" in x and x["openness"].get("result") is not None:
+        return {"O": x["openness"]["result"]}
+    elif "conscientiousness" in x and x["conscientiousness"].get("result") is not None:
+        return {"C": x["conscientiousness"]["result"]}
+    elif "extraversion" in x and x["extraversion"].get("result") is not None:
+        return {"E": x["extraversion"]["result"]}
+    elif "agreeableness" in x and x["agreeableness"].get("result") is not None:
+        return {"A": x["agreeableness"]["result"]}
+    elif "neuroticism" in x and x["neuroticism"].get("result") is not None:
+        return {"N": x["neuroticism"]["result"]}
+
+
+def plot_big5_bar(score_big_five: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
 
-    df = pd.DataFrame.from_dict(
-        score_big_five[0], orient="index", columns=["Percentage"]
-    ).reset_index()
-    df = df.rename(columns={"index": "Trait"})
+    score_dict = {list(d.keys())[0]: list(d.values())[0] for d in score_big_five}
+    df = pd.DataFrame.from_dict(score_dict, orient="index", columns=["Percentage"]).reset_index()
+    df.columns = ["Trait", "Percentage"] 
     custom_colors = ["#577EF3", "#3996DF", "#43C386", "#FDCB1E", "#F57C1A"]
 
     plt.figure(figsize=(12, 6))
@@ -103,14 +170,14 @@ def plot_big_five_bar(score_big_five: list) -> str:
     return "<center><img src='plots/big_five_plot_bar.png'/></center>"
 
 
-def plot_big_five_radar(score_big_five: list) -> str:
+def plot_big5_radar(score_big_five: list) -> str:
     keys = list(score_big_five[0].keys())
     percentile = list(score_big_five[0].values())
 
     keys.append(keys[0])
     percentile.append(percentile[0])
 
-    fig, ax = plt.subplots(figsize=(12, 6), subplot_kw={"polar": True})
+    _, ax = plt.subplots(figsize=(12, 6), subplot_kw={"polar": True})
 
     angles = np.linspace(0, 2 * np.pi, len(keys), endpoint=True)
 
@@ -138,7 +205,7 @@ def plot_big_five_radar(score_big_five: list) -> str:
     return "<center><img src='plots/big_five_plot_radar.png'/></center>"
 
 
-def plot_big_five_openness_facets_bar(score_openness_facets: list) -> str:
+def plot_big5_openness_facets_bar(score_openness_facets: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_openness_facets]
     scores = [list(item.values())[2] for item in score_openness_facets]
@@ -175,7 +242,7 @@ def plot_big_five_openness_facets_bar(score_openness_facets: list) -> str:
     return "<center><img src='plots/big_five_openness_facets_plot_bar.png'/></center>"
 
 
-def plot_big_five_conscientiousness_facets_bar(
+def plot_big5_conscientiousness_facets_bar(
     score_conscientiousness_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
@@ -216,7 +283,7 @@ def plot_big_five_conscientiousness_facets_bar(
     return "<center><img src='plots/big_five_conscientiousness_facets_plot_bar.png'/></center>"
 
 
-def plot_big_five_extraversion_facets_bar(
+def plot_big5_extraversion_facets_bar(
     score_extraversion_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
@@ -257,7 +324,7 @@ def plot_big_five_extraversion_facets_bar(
     )
 
 
-def plot_big_five_agreeableness_facets_bar(
+def plot_big5_agreeableness_facets_bar(
     score_agreeableness_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
@@ -298,7 +365,7 @@ def plot_big_five_agreeableness_facets_bar(
     )
 
 
-def plot_big_five_neuroticism_facets_bar(
+def plot_big5_neuroticism_facets_bar(
     score_neuroticism_facets: list,
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
@@ -337,53 +404,6 @@ def plot_big_five_neuroticism_facets_bar(
     return (
         "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
     )
-
-
-def plot_sentiment_analysis_bar(score_sentiment_analysis: list) -> str:
-    sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-
-    labels = [label.capitalize() for label in score_sentiment_analysis.keys()]
-    lowercase_keys = [label.lower() for label in score_sentiment_analysis.keys()]
-    scores = [
-        score_sentiment_analysis[lowercase_keys[i]]["result"]
-        for i in range(len(labels))
-    ]
-
-    df = pd.DataFrame({"Sentiment": labels, "Percentage": scores})
-
-    plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("Reds", len(labels))
-
-    sns.barplot(
-        data=df,
-        x="Sentiment",
-        y="Percentage",
-        palette=colors,
-        hue="Sentiment",
-        legend=False,
-    )
-
-    for x, bar in zip(scores, plt.gca().patches):
-        plt.gca().annotate(
-            f"{x:.2f}%",
-            (bar.get_x() + bar.get_width() / 2, bar.get_height()),
-            ha="center",
-            va="bottom",
-            fontsize=10,
-            color="black",
-        )
-
-    plt.xlabel("Sentiment")
-    plt.ylabel("Percentage")
-    plt.title("Sentiment Labels")
-
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-
-    plt.savefig("plots/sentiment_analysis_plot_bar.png", bbox_inches="tight")
-    plt.close()
-
-    return "<center><img src='plots/sentiment_analysis_plot_bar.png'/></center>"
 
 
 def plot_orvis_facets_bar(
