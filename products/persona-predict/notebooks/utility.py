@@ -31,11 +31,18 @@ def api_predict_create(token: str, data: dict, save_result: bool = False) -> dic
     if resp.status_code == 201:
         data = resp.json()
         if save_result:
-            with open("results/persona-predict-v2.json", "w") as f:
-                json.dump(data, f)
+            with open("results/persona-predict-v2.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False)
         return data
     print(f"Erro: {resp.status_code} -> {resp.text}")
     return {}
+
+
+def api_save_result_domain(data: dict, domain: str, level: str) -> None:
+    with open(
+        f"results/persona-predict-v2-{domain}-{level}.json", "w", encoding="utf-8"
+    ) as f:
+        json.dump(data, f, ensure_ascii=False)
 
 
 def get_api_predict_result_in_file() -> dict:
@@ -51,9 +58,11 @@ def get_my_txt_essay(lang: str = "en") -> str:
         return " ".join(str(open("essays/my-essay-pt.txt", "r").read()).split())
     raise ValueError("Essay not found!")
 
+
 def image_to_base64(image_path: str) -> base64.b64decode:
     with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
 
 def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
     labels, parents = [], []
@@ -61,10 +70,10 @@ def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
 
     def add_sunburst_data(label: str, parent: str, value: float) -> None:
         value = round(float(value), 2)
-        labels.append(label)  
-        parents.append(parent)  
+        labels.append(label)
+        parents.append(parent)
         values.append(value)
-        text.append(f"{label} ({value}%)") 
+        text.append(f"{label} ({value}%)")
 
     add_sunburst_data("Big Five", "", 100)
 
@@ -79,36 +88,43 @@ def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
                 except ValueError:
                     pass
 
-    fig = go.Figure(go.Sunburst(
-        labels=labels,
-        parents=parents,
-        values=values,
-        text=text,  
-        textinfo='text',
-        insidetextorientation='radial',
-    ))
+    fig = go.Figure(
+        go.Sunburst(
+            labels=labels,
+            parents=parents,
+            values=values,
+            text=text,
+            textinfo="text",
+            insidetextorientation="radial",
+        )
+    )
 
     fig.update_layout(
         margin=dict(t=0, l=0, r=0, b=0),
-        width=1200,  
-        height=1200, 
-        uniformtext=dict(minsize=10, mode='hide'),  
-
+        width=1200,
+        height=1200,
+        uniformtext=dict(minsize=10, mode="hide"),
     )
 
     base64_image = image_to_base64(image_path)
 
     fig.update_layout(
-        images=[dict(
-            source=f"data:image/png;base64,{base64_image}",
-            xref="paper", yref="paper",
-            x=0.5, y=0.5,  
-            sizex=0.25, sizey=0.25,  
-            xanchor="center", yanchor="middle", 
-            layer="above"  
-        )],
+        images=[
+            dict(
+                source=f"data:image/png;base64,{base64_image}",
+                xref="paper",
+                yref="paper",
+                x=0.5,
+                y=0.5,
+                sizex=0.25,
+                sizey=0.25,
+                xanchor="center",
+                yanchor="middle",
+                layer="above",
+            )
+        ],
         margin=dict(t=0, l=0, r=0, b=0),
-        uniformtext=dict(minsize=10, mode='hide')
+        uniformtext=dict(minsize=10, mode="hide"),
     )
 
     fig.write_image("plots/big_five_plot_sunburst.png", format="png")
@@ -133,8 +149,10 @@ def plot_big5_bar(score_big_five: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
 
     score_dict = {list(d.keys())[0]: list(d.values())[0] for d in score_big_five}
-    df = pd.DataFrame.from_dict(score_dict, orient="index", columns=["Percentage"]).reset_index()
-    df.columns = ["Trait", "Percentage"] 
+    df = pd.DataFrame.from_dict(
+        score_dict, orient="index", columns=["Percentage"]
+    ).reset_index()
+    df.columns = ["Trait", "Percentage"]
     custom_colors = ["#577EF3", "#3996DF", "#43C386", "#FDCB1E", "#F57C1A"]
 
     plt.figure(figsize=(12, 6))
