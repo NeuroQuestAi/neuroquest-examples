@@ -14,10 +14,15 @@ To use **Persona Predict** with `jupyter-notebook`:
 
 View with **NBViewer**:
 
+Input of processed text in American English 🇺🇸:
+
  - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb?flush_cache=true)
+
+Input of processed text in Brazilian Portuguese 🇧🇷:
+
   - [Persona-Predict-Eval-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Eval-PT-BR.ipynb?flush_cache=true)
   - [Persona-Predict-Batch-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Batch-PT-BR.ipynb?flush_cache=true)
-  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop-PT-BR.ipynb?flush_cache=true)
+  - [Persona-Predict-Popolation-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop-PT-BR.ipynb?flush_cache=true)
 
 Or test directly in [Binder](https://mybinder.org/):
 
