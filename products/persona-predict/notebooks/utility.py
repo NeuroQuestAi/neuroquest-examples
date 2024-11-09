@@ -9,6 +9,8 @@ import seaborn as sns
 import plotly.graph_objects as go
 import plotly.express as px
 
+from faker import Faker
+
 
 def api_login(user: str, password: str) -> dict:
     resp = requests.post(
@@ -38,9 +40,32 @@ def api_predict_create(token: str, data: dict, save_result: bool = False) -> dic
     return {}
 
 
+def create_batch_analysis(essay: str, token: str) -> dict:
+    analysis = api_predict_create(
+        token=token,
+        data={
+            "name": Faker().name(),
+            "essay": " ".join(essay.split()),
+            "domain": "ALL",
+            "task": False,
+        },
+        save_result=False,
+    )
+    uid = analysis["data"]["document_id"]
+    api_save_result_batch(data=analysis, uid=uid)
+    return analysis
+
+
 def api_save_result_domain(data: dict, domain: str, level: str) -> None:
     with open(
         f"results/persona-predict-v2-{domain}-{level}.json", "w", encoding="utf-8"
+    ) as f:
+        json.dump(data, f, ensure_ascii=False)
+
+
+def api_save_result_batch(data: dict, uid: str) -> None:
+    with open(
+        f"results/batch/persona-predict-v2-{uid}.json", "w", encoding="utf-8"
     ) as f:
         json.dump(data, f, ensure_ascii=False)
 
