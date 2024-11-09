@@ -1,5 +1,6 @@
 import json
 import base64
+import glob
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -78,9 +79,9 @@ def get_api_predict_result_in_file() -> dict:
 
 def get_my_txt_essay(lang: str = "en") -> str:
     if lang == "en":
-        return " ".join(str(open("essays/my-essay-en.txt", "r").read()).split())
+        return " ".join(str(open("essays/my-essay-en-us.txt", "r").read()).split())
     elif lang == "pt":
-        return " ".join(str(open("essays/my-essay-pt.txt", "r").read()).split())
+        return " ".join(str(open("essays/my-essay-pt-br.txt", "r").read()).split())
     raise ValueError("Essay not found!")
 
 
@@ -539,9 +540,7 @@ def plot_eda_radar(df: pd.DataFrame, targets: list, title: str) -> None:
     if len(targets) == 5:
         titles = targets + targets[:1]
     else:
-        titles = [
-            facet.split("_", 1)[1].replace("_", " ").title() for facet in targets
-        ] + [targets[0].split("_", 1)[1].replace("_", " ").title()]
+        titles = [x.replace("_", "-").capitalize() for x in targets]
 
     for stat, line_style in [("Mean", None), ("Max", "dash"), ("Min", "dash")]:
         values = (
@@ -589,6 +588,7 @@ def remove_stop_words_from_essay(
     if download_data:
         nltk.download("stopwords")
         nltk.download("punkt")
+        nltk.download("punkt_tab")
 
     essays = " ".join(df["essay"].astype(str).tolist())
     words = word_tokenize(essays)
@@ -597,3 +597,67 @@ def remove_stop_words_from_essay(
     clean_stopwords = " ".join([x for x in words if x.lower() not in stopwords])
 
     return clean_stopwords or None
+
+
+def get_traits_from_batch_json_results(directory: str = "results/batch/*.json") -> list:
+    json_files = glob.glob(directory)
+
+    file_count = len(json_files)
+    print(f"Number of JSON files found: {file_count}")
+
+    dataframes = []
+
+    for file_path in json_files:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            traits = data["data"]["person"]["analysis"]["personalities"]
+
+            user = {
+                "essay": data["data"]["person"]["analysis"]["essay"]["analyzed_text"],
+                "world_count": data["data"]["person"]["analysis"]["essay"][
+                    "word_count"
+                ],
+                "openness": traits[0]["openness"]["result"],
+                "imagination": traits[0]["openness"]["traits"][0]["result"],
+                "artistic_interests": traits[0]["openness"]["traits"][1]["result"],
+                "emotionality": traits[0]["openness"]["traits"][2]["result"],
+                "adventurousness": traits[0]["openness"]["traits"][3]["result"],
+                "intellect": traits[0]["openness"]["traits"][4]["result"],
+                "liberalism": traits[0]["openness"]["traits"][5]["result"],
+                "conscientiousness": traits[1]["conscientiousness"]["result"],
+                "self_efficacy": traits[1]["conscientiousness"]["traits"][0]["result"],
+                "orderliness": traits[1]["conscientiousness"]["traits"][1]["result"],
+                "dutifulness": traits[1]["conscientiousness"]["traits"][2]["result"],
+                "achievement_striving": traits[1]["conscientiousness"]["traits"][3][
+                    "result"
+                ],
+                "self_discipline": traits[1]["conscientiousness"]["traits"][4][
+                    "result"
+                ],
+                "cautiousness": traits[1]["conscientiousness"]["traits"][5]["result"],
+                "extraversion": traits[2]["extraversion"]["result"],
+                "friendliness": traits[2]["extraversion"]["traits"][0]["result"],
+                "gregariousness": traits[2]["extraversion"]["traits"][1]["result"],
+                "assertiveness": traits[2]["extraversion"]["traits"][2]["result"],
+                "activity_level": traits[2]["extraversion"]["traits"][3]["result"],
+                "excitement_seeking": traits[2]["extraversion"]["traits"][4]["result"],
+                "cheerfulness": traits[2]["extraversion"]["traits"][5]["result"],
+                "agreeableness": traits[3]["agreeableness"]["result"],
+                "trust": traits[3]["agreeableness"]["traits"][0]["result"],
+                "morality": traits[3]["agreeableness"]["traits"][1]["result"],
+                "altruism": traits[3]["agreeableness"]["traits"][2]["result"],
+                "cooperation": traits[3]["agreeableness"]["traits"][3]["result"],
+                "modesty": traits[3]["agreeableness"]["traits"][4]["result"],
+                "sympathy": traits[3]["agreeableness"]["traits"][5]["result"],
+                "neuroticism": traits[4]["neuroticism"]["result"],
+                "anxiety": traits[4]["neuroticism"]["traits"][0]["result"],
+                "anger": traits[4]["neuroticism"]["traits"][1]["result"],
+                "depression": traits[4]["neuroticism"]["traits"][2]["result"],
+                "self_consciousness": traits[4]["neuroticism"]["traits"][3]["result"],
+                "immoderation": traits[4]["neuroticism"]["traits"][4]["result"],
+                "vulnerability": traits[4]["neuroticism"]["traits"][5]["result"],
+            }
+
+            dataframes.append(user)
+
+    return dataframes

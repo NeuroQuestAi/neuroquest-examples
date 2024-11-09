@@ -14,9 +14,10 @@ To use **Persona Predict** with `jupyter-notebook`:
 
 View with **NBViewer**:
 
-  - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb?flush_cache=true)
+ - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb?flush_cache=true)
   - [Persona-Predict-Eval-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Eval-PT-BR.ipynb?flush_cache=true)
-  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Data.ipynb?flush_cache=true)
+  - [Persona-Predict-Batch-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Batch-PT-BR.ipynb?flush_cache=true)
+  - [Persona-Predict-Data](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop-PT-BR.ipynb?flush_cache=true)
 
 Or test directly in [Binder](https://mybinder.org/):
 
@@ -41,14 +42,14 @@ In this directory:
 poetry shell && poetry update
 ```
 
+Export requirements
+
+```shell
+poetry update --only main && pip3 freeze > requirements.txt
+```
+
 ### Start Notebook
 
 ```shell
 jupyter lab
-```
-
-Or
-
-```shell
-./run-jupyter
 ```
