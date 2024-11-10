@@ -616,3 +616,77 @@ def get_traits_from_batch_json_results(directory: str = "results/batch/*.json") 
             dataframes.append(user)
 
     return dataframes
+
+
+def get_confidence_from_batch_json_results(
+    directory: str = "results/batch/*.json",
+) -> list:
+    json_files = glob.glob(directory)
+
+    file_count = len(json_files)
+    print(f"Number of JSON files found: {file_count}")
+
+    dataframes = []
+
+    for file_path in json_files:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            traits = data["data"]["person"]["analysis"]["personalities"]
+
+            user = {
+                "openness": traits[0]["openness"]["confidence"],
+                "imagination": traits[0]["openness"]["traits"][0]["confidence"],
+                "artistic_interests": traits[0]["openness"]["traits"][1]["confidence"],
+                "emotionality": traits[0]["openness"]["traits"][2]["confidence"],
+                "adventurousness": traits[0]["openness"]["traits"][3]["confidence"],
+                "intellect": traits[0]["openness"]["traits"][4]["confidence"],
+                "liberalism": traits[0]["openness"]["traits"][5]["confidence"],
+                "conscientiousness": traits[1]["conscientiousness"]["confidence"],
+                "self_efficacy": traits[1]["conscientiousness"]["traits"][0][
+                    "confidence"
+                ],
+                "orderliness": traits[1]["conscientiousness"]["traits"][1][
+                    "confidence"
+                ],
+                "dutifulness": traits[1]["conscientiousness"]["traits"][2][
+                    "confidence"
+                ],
+                "achievement_striving": traits[1]["conscientiousness"]["traits"][3][
+                    "confidence"
+                ],
+                "self_discipline": traits[1]["conscientiousness"]["traits"][4][
+                    "confidence"
+                ],
+                "cautiousness": traits[1]["conscientiousness"]["traits"][5][
+                    "confidence"
+                ],
+                "extraversion": traits[2]["extraversion"]["confidence"],
+                "friendliness": traits[2]["extraversion"]["traits"][0]["confidence"],
+                "gregariousness": traits[2]["extraversion"]["traits"][1]["confidence"],
+                "assertiveness": traits[2]["extraversion"]["traits"][2]["confidence"],
+                "activity_level": traits[2]["extraversion"]["traits"][3]["confidence"],
+                "excitement_seeking": traits[2]["extraversion"]["traits"][4][
+                    "confidence"
+                ],
+                "cheerfulness": traits[2]["extraversion"]["traits"][5]["confidence"],
+                "agreeableness": traits[3]["agreeableness"]["confidence"],
+                "trust": traits[3]["agreeableness"]["traits"][0]["confidence"],
+                "morality": traits[3]["agreeableness"]["traits"][1]["confidence"],
+                "altruism": traits[3]["agreeableness"]["traits"][2]["confidence"],
+                "cooperation": traits[3]["agreeableness"]["traits"][3]["confidence"],
+                "modesty": traits[3]["agreeableness"]["traits"][4]["confidence"],
+                "sympathy": traits[3]["agreeableness"]["traits"][5]["confidence"],
+                "neuroticism": traits[4]["neuroticism"]["confidence"],
+                "anxiety": traits[4]["neuroticism"]["traits"][0]["confidence"],
+                "anger": traits[4]["neuroticism"]["traits"][1]["confidence"],
+                "depression": traits[4]["neuroticism"]["traits"][2]["confidence"],
+                "self_consciousness": traits[4]["neuroticism"]["traits"][3][
+                    "confidence"
+                ],
+                "immoderation": traits[4]["neuroticism"]["traits"][4]["confidence"],
+                "vulnerability": traits[4]["neuroticism"]["traits"][5]["confidence"],
+            }
+
+            dataframes.append(user)
+
+    return dataframes

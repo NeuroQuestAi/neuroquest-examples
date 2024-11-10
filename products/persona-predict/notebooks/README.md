@@ -14,15 +14,16 @@ To use **Persona Predict** with `jupyter-notebook`:
 
 View with **NBViewer**:
 
-Input of processed text in American English 🇺🇸:
+Input of processed text in **American English** 🇺🇸:
 
  - [Persona-Predict-MySelf-EN-US](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf-EN-US.ipynb?flush_cache=true)
 
-Input of processed text in Brazilian Portuguese 🇧🇷:
+Input of processed text in **Brazilian Portuguese** 🇧🇷:
 
   - [Persona-Predict-Eval-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Eval-PT-BR.ipynb?flush_cache=true)
   - [Persona-Predict-Batch-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Batch-PT-BR.ipynb?flush_cache=true)
   - [Persona-Predict-Population-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop-PT-BR.ipynb?flush_cache=true)
+  - [Persona-Predict-Population-Confidence-PT-BR](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-Pop-Conf-PT-BR.ipynb?flush_cache=true)
 
 Or test directly in [Binder](https://mybinder.org/):
 
@@ -30,7 +31,7 @@ Or test directly in [Binder](https://mybinder.org/):
 
 Or use it on your machine by following the steps below.
 
-### Environment variables
+### Environment variables 🛠️
 
 Define the environment variables with your information:
 
@@ -39,7 +40,14 @@ export NQ_USER="my-email"
 export NQ_PASSWORD="my-password"
 ```
 
-### Build
+Or create '**.env**' file in project root:
+
+```file
+NQ_USER=my-email
+NQ_PASSWORD=my-password
+```
+
+### Build 🏗️
 
 In this directory:
 
@@ -47,13 +55,13 @@ In this directory:
 poetry shell && poetry update
 ```
 
-Export requirements
+Export requirements:
 
 ```shell
 poetry update --only main && pip3 freeze > requirements.txt
 ```
 
-### Start Notebook
+### Start Notebook 🏁
 
 ```shell
 jupyter lab
