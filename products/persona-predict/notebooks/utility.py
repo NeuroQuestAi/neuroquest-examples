@@ -153,9 +153,9 @@ def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
         uniformtext=dict(minsize=10, mode="hide"),
     )
 
-    fig.write_image("plots/big_five_plot_sunburst.png", format="png")
+    fig.write_image("plots/big5_plot_sunburst.png", format="png")
 
-    return "<center><img src='plots/big_five_plot_sunburst.png'/></center>"
+    return "<center><img src='plots/big5_plot_sunburst.png'/></center>"
 
 
 def get_big5(x: dict) -> dict:
@@ -208,10 +208,10 @@ def plot_big5_bar(score_big_five: list) -> str:
     plt.xticks(rotation=0)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return "<center><img src='plots/big_five_plot_bar.png'/></center>"
+    return "<center><img src='plots/big5_plot_bar.png'/></center>"
 
 
 def plot_big5_radar(score_big_five: list) -> str:
@@ -243,10 +243,10 @@ def plot_big5_radar(score_big_five: list) -> str:
     plt.title("Big-Five Personality")
     plt.legend(loc="upper right")
 
-    plt.savefig("plots/big_five_plot_radar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_plot_radar.png", bbox_inches="tight")
     plt.close()
 
-    return "<center><img src='plots/big_five_plot_radar.png'/></center>"
+    return "<center><img src='plots/big5_plot_radar.png'/></center>"
 
 
 def plot_big5_openness_facets_bar(score_openness_facets: list) -> str:
@@ -280,10 +280,10 @@ def plot_big5_openness_facets_bar(score_openness_facets: list) -> str:
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_openness_facets_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_openness_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return "<center><img src='plots/big_five_openness_facets_plot_bar.png'/></center>"
+    return "<center><img src='plots/big5_openness_facets_plot_bar.png'/></center>"
 
 
 def plot_big5_conscientiousness_facets_bar(
@@ -319,12 +319,12 @@ def plot_big5_conscientiousness_facets_bar(
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig(
-        "plots/big_five_conscientiousness_facets_plot_bar.png", bbox_inches="tight"
-    )
+    plt.savefig("plots/big5_conscientiousness_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return "<center><img src='plots/big_five_conscientiousness_facets_plot_bar.png'/></center>"
+    return (
+        "<center><img src='plots/big5_conscientiousness_facets_plot_bar.png'/></center>"
+    )
 
 
 def plot_big5_extraversion_facets_bar(
@@ -360,12 +360,10 @@ def plot_big5_extraversion_facets_bar(
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_extraversion_facets_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_extraversion_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return (
-        "<center><img src='plots/big_five_extraversion_facets_plot_bar.png'/></center>"
-    )
+    return "<center><img src='plots/big5_extraversion_facets_plot_bar.png'/></center>"
 
 
 def plot_big5_agreeableness_facets_bar(
@@ -401,12 +399,10 @@ def plot_big5_agreeableness_facets_bar(
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_agreeableness_facets_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_agreeableness_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return (
-        "<center><img src='plots/big_five_agreeableness_facets_plot_bar.png'/></center>"
-    )
+    return "<center><img src='plots/big5_agreeableness_facets_plot_bar.png'/></center>"
 
 
 def plot_big5_neuroticism_facets_bar(
@@ -442,51 +438,10 @@ def plot_big5_neuroticism_facets_bar(
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    plt.savefig("plots/big_five_neuroticism_facets_plot_bar.png", bbox_inches="tight")
+    plt.savefig("plots/big5_neuroticism_facets_plot_bar.png", bbox_inches="tight")
     plt.close()
 
-    return (
-        "<center><img src='plots/big_five_neuroticism_facets_plot_bar.png'/></center>"
-    )
-
-
-def plot_orvis_facets_bar(
-    score_orvis_facets: list,
-) -> str:
-    sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
-    traits = [list(item.values())[1] for item in score_orvis_facets]
-    scores = [list(item.values())[2] for item in score_orvis_facets]
-
-    df = pd.DataFrame({"Trait": traits, "Percentage": scores})
-
-    plt.figure(figsize=(12, 6))
-    colors = sns.color_palette("Set2", len(traits))
-
-    sns.barplot(
-        data=df, x="Trait", y="Percentage", palette=colors, hue="Trait", legend=False
-    )
-
-    for x, bar in zip(scores, plt.gca().patches):
-        plt.gca().annotate(
-            f"{x:.2f}%",
-            (bar.get_x() + bar.get_width() / 2, bar.get_height()),
-            ha="center",
-            va="bottom",
-            fontsize=10,
-            color="black",
-        )
-
-    plt.xlabel("Traits")
-    plt.ylabel("Percentage")
-    plt.title("ORVIS")
-
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-
-    plt.savefig("plots/orvis_facets_plot_bar.png", bbox_inches="tight")
-    plt.close()
-
-    return "<center><img src='plots/orvis_facets_plot_bar.png'/></center>"
+    return "<center><img src='plots/big5_neuroticism_facets_plot_bar.png'/></center>"
 
 
 def plot_eda_boxplot(

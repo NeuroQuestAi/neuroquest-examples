@@ -16,7 +16,7 @@ View with **NBViewer**:
 
 Input of processed text in American English 🇺🇸:
 
- - [Persona-Predict-MySelf](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf.ipynb?flush_cache=true)
+ - [Persona-Predict-MySelf-EN-US](https://nbviewer.org/github/NeuroQuestAi/neuroquest-examples/blob/main/products/persona-predict/notebooks/Persona-Predict-MySelf-EN-US.ipynb?flush_cache=true)
 
 Input of processed text in Brazilian Portuguese 🇧🇷:
 
