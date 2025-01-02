@@ -31,6 +31,8 @@ Or test directly in [Binder](https://mybinder.org/):
 
 Or use it on your machine by following the steps below.
 
+`Note`: The raw model output can be found in the **raw_score** field. The value in the percentile field is specific to a population, representing a calibrated result. When there is no calibration for the population, the **raw_score** and **percentile** values will be identical.
+
 ### Environment variables 🛠️
 
 Define the environment variables with your information:

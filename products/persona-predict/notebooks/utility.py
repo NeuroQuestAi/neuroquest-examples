@@ -105,10 +105,10 @@ def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
 
     for personality in data["data"]["person"]["analysis"]["personalities"]:
         for dimension, details in personality.items():
-            add_sunburst_data(dimension.capitalize(), "Big Five", details["result"])
+            add_sunburst_data(dimension.capitalize(), "Big Five", details["percentile"])
             for trait in details["traits"]:
                 try:
-                    facet_name, facet_value = trait["name"], trait["result"]
+                    facet_name, facet_value = trait["name"], trait["percentile"]
                     facet_label = f"{facet_name.replace('_', ' ').capitalize()}"
                     add_sunburst_data(facet_label, dimension.capitalize(), facet_value)
                 except ValueError:
@@ -159,16 +159,16 @@ def plot_sunburst(data: dict, image_path: str = "imgs/person1.png") -> str:
 
 
 def get_big5(x: dict) -> dict:
-    if "openness" in x and x["openness"].get("result") is not None:
-        return {"O": x["openness"]["result"]}
-    elif "conscientiousness" in x and x["conscientiousness"].get("result") is not None:
-        return {"C": x["conscientiousness"]["result"]}
-    elif "extraversion" in x and x["extraversion"].get("result") is not None:
-        return {"E": x["extraversion"]["result"]}
-    elif "agreeableness" in x and x["agreeableness"].get("result") is not None:
-        return {"A": x["agreeableness"]["result"]}
-    elif "neuroticism" in x and x["neuroticism"].get("result") is not None:
-        return {"N": x["neuroticism"]["result"]}
+    if "openness" in x and x["openness"].get("percentile") is not None:
+        return {"O": x["openness"]["percentile"]}
+    elif "conscientiousness" in x and x["conscientiousness"].get("percentile") is not None:
+        return {"C": x["conscientiousness"]["percentile"]}
+    elif "extraversion" in x and x["extraversion"].get("percentile") is not None:
+        return {"E": x["extraversion"]["percentile"]}
+    elif "agreeableness" in x and x["agreeableness"].get("percentile") is not None:
+        return {"A": x["agreeableness"]["percentile"]}
+    elif "neuroticism" in x and x["neuroticism"].get("percentile") is not None:
+        return {"N": x["neuroticism"]["percentile"]}
 
 
 def plot_big5_bar(score_big_five: list) -> str:
@@ -252,7 +252,7 @@ def plot_big5_radar(score_big_five: list) -> str:
 def plot_big5_openness_facets_bar(score_openness_facets: list) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_openness_facets]
-    scores = [list(item.values())[2] for item in score_openness_facets]
+    scores = [list(item.values())[4] for item in score_openness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -291,7 +291,7 @@ def plot_big5_conscientiousness_facets_bar(
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_conscientiousness_facets]
-    scores = [list(item.values())[2] for item in score_conscientiousness_facets]
+    scores = [list(item.values())[4] for item in score_conscientiousness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -332,7 +332,7 @@ def plot_big5_extraversion_facets_bar(
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_extraversion_facets]
-    scores = [list(item.values())[2] for item in score_extraversion_facets]
+    scores = [list(item.values())[4] for item in score_extraversion_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -371,7 +371,7 @@ def plot_big5_agreeableness_facets_bar(
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_agreeableness_facets]
-    scores = [list(item.values())[2] for item in score_agreeableness_facets]
+    scores = [list(item.values())[4] for item in score_agreeableness_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -410,7 +410,7 @@ def plot_big5_neuroticism_facets_bar(
 ) -> str:
     sns.set(style="whitegrid", rc={"grid.linewidth": 0.5})
     traits = [list(item.values())[1] for item in score_neuroticism_facets]
-    scores = [list(item.values())[2] for item in score_neuroticism_facets]
+    scores = [list(item.values())[4] for item in score_neuroticism_facets]
 
     df = pd.DataFrame({"Trait": traits, "Percentage": scores})
 
@@ -572,45 +572,45 @@ def get_traits_from_batch_json_results(directory: str = "results/batch/*.json") 
                 "world_count": data["data"]["person"]["analysis"]["essay"][
                     "word_count"
                 ],
-                "openness": traits[0]["openness"]["result"],
-                "imagination": traits[0]["openness"]["traits"][0]["result"],
-                "artistic_interests": traits[0]["openness"]["traits"][1]["result"],
-                "emotionality": traits[0]["openness"]["traits"][2]["result"],
-                "adventurousness": traits[0]["openness"]["traits"][3]["result"],
-                "intellect": traits[0]["openness"]["traits"][4]["result"],
-                "liberalism": traits[0]["openness"]["traits"][5]["result"],
-                "conscientiousness": traits[1]["conscientiousness"]["result"],
-                "self_efficacy": traits[1]["conscientiousness"]["traits"][0]["result"],
-                "orderliness": traits[1]["conscientiousness"]["traits"][1]["result"],
-                "dutifulness": traits[1]["conscientiousness"]["traits"][2]["result"],
+                "openness": traits[0]["openness"]["percentile"],
+                "imagination": traits[0]["openness"]["traits"][0]["percentile"],
+                "artistic_interests": traits[0]["openness"]["traits"][1]["percentile"],
+                "emotionality": traits[0]["openness"]["traits"][2]["percentile"],
+                "adventurousness": traits[0]["openness"]["traits"][3]["percentile"],
+                "intellect": traits[0]["openness"]["traits"][4]["percentile"],
+                "liberalism": traits[0]["openness"]["traits"][5]["percentile"],
+                "conscientiousness": traits[1]["conscientiousness"]["percentile"],
+                "self_efficacy": traits[1]["conscientiousness"]["traits"][0]["percentile"],
+                "orderliness": traits[1]["conscientiousness"]["traits"][1]["percentile"],
+                "dutifulness": traits[1]["conscientiousness"]["traits"][2]["percentile"],
                 "achievement_striving": traits[1]["conscientiousness"]["traits"][3][
-                    "result"
+                    "percentile"
                 ],
                 "self_discipline": traits[1]["conscientiousness"]["traits"][4][
-                    "result"
+                    "percentile"
                 ],
-                "cautiousness": traits[1]["conscientiousness"]["traits"][5]["result"],
-                "extraversion": traits[2]["extraversion"]["result"],
-                "friendliness": traits[2]["extraversion"]["traits"][0]["result"],
-                "gregariousness": traits[2]["extraversion"]["traits"][1]["result"],
-                "assertiveness": traits[2]["extraversion"]["traits"][2]["result"],
-                "activity_level": traits[2]["extraversion"]["traits"][3]["result"],
-                "excitement_seeking": traits[2]["extraversion"]["traits"][4]["result"],
-                "cheerfulness": traits[2]["extraversion"]["traits"][5]["result"],
-                "agreeableness": traits[3]["agreeableness"]["result"],
-                "trust": traits[3]["agreeableness"]["traits"][0]["result"],
-                "morality": traits[3]["agreeableness"]["traits"][1]["result"],
-                "altruism": traits[3]["agreeableness"]["traits"][2]["result"],
-                "cooperation": traits[3]["agreeableness"]["traits"][3]["result"],
-                "modesty": traits[3]["agreeableness"]["traits"][4]["result"],
-                "sympathy": traits[3]["agreeableness"]["traits"][5]["result"],
-                "neuroticism": traits[4]["neuroticism"]["result"],
-                "anxiety": traits[4]["neuroticism"]["traits"][0]["result"],
-                "anger": traits[4]["neuroticism"]["traits"][1]["result"],
-                "depression": traits[4]["neuroticism"]["traits"][2]["result"],
-                "self_consciousness": traits[4]["neuroticism"]["traits"][3]["result"],
-                "immoderation": traits[4]["neuroticism"]["traits"][4]["result"],
-                "vulnerability": traits[4]["neuroticism"]["traits"][5]["result"],
+                "cautiousness": traits[1]["conscientiousness"]["traits"][5]["percentile"],
+                "extraversion": traits[2]["extraversion"]["percentile"],
+                "friendliness": traits[2]["extraversion"]["traits"][0]["percentile"],
+                "gregariousness": traits[2]["extraversion"]["traits"][1]["percentile"],
+                "assertiveness": traits[2]["extraversion"]["traits"][2]["percentile"],
+                "activity_level": traits[2]["extraversion"]["traits"][3]["percentile"],
+                "excitement_seeking": traits[2]["extraversion"]["traits"][4]["percentile"],
+                "cheerfulness": traits[2]["extraversion"]["traits"][5]["percentile"],
+                "agreeableness": traits[3]["agreeableness"]["percentile"],
+                "trust": traits[3]["agreeableness"]["traits"][0]["percentile"],
+                "morality": traits[3]["agreeableness"]["traits"][1]["percentile"],
+                "altruism": traits[3]["agreeableness"]["traits"][2]["percentile"],
+                "cooperation": traits[3]["agreeableness"]["traits"][3]["percentile"],
+                "modesty": traits[3]["agreeableness"]["traits"][4]["percentile"],
+                "sympathy": traits[3]["agreeableness"]["traits"][5]["percentile"],
+                "neuroticism": traits[4]["neuroticism"]["percentile"],
+                "anxiety": traits[4]["neuroticism"]["traits"][0]["percentile"],
+                "anger": traits[4]["neuroticism"]["traits"][1]["percentile"],
+                "depression": traits[4]["neuroticism"]["traits"][2]["percentile"],
+                "self_consciousness": traits[4]["neuroticism"]["traits"][3]["percentile"],
+                "immoderation": traits[4]["neuroticism"]["traits"][4]["percentile"],
+                "vulnerability": traits[4]["neuroticism"]["traits"][5]["percentile"],
             }
 
             dataframes.append(user)
